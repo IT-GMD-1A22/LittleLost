@@ -1,0 +1,10 @@
+ensure the following plugin is imported:
+https://assetstore.unity.com/packages/tools/utilities/substance-in-unity-110555
+
+go to https://substance3d.adobe.com/community-assets/ and find nice assets
+
+rightclick in unity and press "import new assets".
+
+select the downloaded asset.
+
+After its importet, it can be used in the project.
