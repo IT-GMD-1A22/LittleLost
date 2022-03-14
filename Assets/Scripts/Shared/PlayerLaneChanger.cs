@@ -30,63 +30,67 @@ public class PlayerLaneChanger : MonoBehaviour
     private void LateUpdate()
     {
         _controller.GetInput().takeZMovement = allowLaneChange && !changing;
+        var transformPosition = transform.position;
         if (allowLaneChange && !changing)
         {
             if (_controller.GetInput().move.y != 0.0f)
             {
-
                 allowLaneChange = false;
                 changing = true;
-                originalZ = Mathf.Round(transform.position.z / 3f) * 3f;
+                originalZ = Mathf.Round(transformPosition.z / 3f) * 3f;
 
                 snapZ = Mathf.Round(_controller.GetInput().move.y > 0.0f
-                    ? Mathf.Round(gameObject.transform.position.z + 3.0f)
-                    : Mathf.Round(gameObject.transform.position.z - 3.0f));
+                    ? Mathf.Round(transformPosition.z + 3.0f)
+                    : Mathf.Round(transformPosition.z - 3.0f));
             }
+        }
+        else if (!changing && !allowLaneChange)
+        {
+            // lock character to Z positon unless we allow to change it
+            transform.position = new Vector3(transformPosition.x, transformPosition.y, Mathf.Round(transformPosition.z / 3f) * 3f);
         }
         else if (changing)
         {
-            var offset = Mathf.Clamp(snapZ - Mathf.Round(gameObject.transform.position.z), -1, 1); // normalize
-
+            // find move direction
+            var offset = Mathf.Clamp(snapZ - Mathf.Round(transformPosition.z), -1, 1);
+            // find destination vector of new lane
+            var destVector = new Vector3(transformPosition.x, transformPosition.y, snapZ);
+            // find difference from current to dest
+            Vector3 diffVector = Vector3.MoveTowards(transformPosition, destVector, _controller.GetVelocity().magnitude * Time.deltaTime);
+            // force position to new vector
+            transform.position = diffVector;
+            // tell player controller we are moving
+            _controller.GetInput().move.y = offset;
+            // create raycast hit object
             var hit = new RaycastHit();
-            // check if player is hitting objects on the +-Z axis, if so, return to original position
-            if (Physics.Raycast(gameObject.transform.position, Vector3.forward, out hit, 0.9f) && offset > 0.0f ||
-                Physics.Raycast(gameObject.transform.position, -Vector3.forward, out hit, 0.9f) && offset < 0.0f)
+            // check if we are hitting something when switching lane
+            if (Physics.Raycast(transformPosition, Vector3.forward, out hit, 0.9f) && offset > 0.0f ||
+                Physics.Raycast(transformPosition, -Vector3.forward, out hit, 0.9f) && offset < 0.0f)
             {
+                // if we hit something, move back to original lane by setting snapZ
                 snapZ = originalZ;
-                _controller.GetInput().move.y = Mathf.Clamp(snapZ - gameObject.transform.position.z, -1, 1);
+                // tell player controller we are moving in direction
+                _controller.GetInput().move.y = Mathf.Clamp(snapZ - transformPosition.z, -1, 1);
             }
-            else if (Mathf.Abs(offset) > 0.1f)
+            else if (Math.Abs(transformPosition.z - snapZ) < 0.1f)
             {
-                // move the player towards the Z direction
-                _controller.GetInput().move.y = offset;
-            }
-            else
-            {
-                _controller.GetInput().move.y = 0.0f;
-                
-                // fix as character controller resets transforms.position
-                GetComponent<CharacterController>().enabled = false;
-                
-                // stop z movement and snap player to position for consistency.
-                var snapPosition = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, Mathf.Round(transform.position.z / 3f) * 3f);
-                gameObject.transform.position = snapPosition;
-                
-                // enable the character controller again to enable further movements
-                GetComponent<CharacterController>().enabled = true;
-                
+                // check if we are at goal destination, if so, disable the movement and tell
+                // player controller top stop move.
                 changing = false;
+                _controller.GetInput().move.y = 0.0f;
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        allowLaneChange = true;
+        if (other.CompareTag("AllowLaneChange"))
+            allowLaneChange = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        allowLaneChange = false;
+        if (other.CompareTag("AllowLaneChange"))
+            allowLaneChange = false;
     }
 }
