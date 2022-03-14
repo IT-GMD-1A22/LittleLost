@@ -29,8 +29,6 @@ public class PlayerLaneChanger : MonoBehaviour
     // Late update to ensure that update from playercontroller has been applied (Fixed -> update -> lateupdate)
     private void LateUpdate()
     {
-        Debug.Log(Mathf.Round(transform.position.z / 3f) * 3f);
-        
         _controller.GetInput().takeZMovement = allowLaneChange && !changing;
         if (allowLaneChange && !changing)
         {
