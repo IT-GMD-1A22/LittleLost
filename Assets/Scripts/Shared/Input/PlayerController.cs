@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("What layers the character uses as ground")]
     public LayerMask GroundLayers;
-    
+
 
     // player
     private float _speed;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private float _rotationVelocity;
     private float _verticalVelocity;
     private float _terminalVelocity = 53.0f;
+    public bool allowZMovement = false;
 
     // timeout deltatime
     private float _jumpTimeoutDelta;
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
     public GameObject _mainCamera;
 
     private bool _hasAnimator;
-    
+
     private void Start()
     {
         _hasAnimator = TryGetComponent(out _animator);
@@ -90,12 +92,11 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _hasAnimator = TryGetComponent(out _animator);
-
+        
         JumpAndGravity();
         GroundedCheck();
         Move();
     }
-    
 
     private void AssignAnimationIDs()
     {
@@ -119,15 +120,12 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool(_animIDGrounded, Grounded);
         }
     }
-
-
-
+    
+    
     private void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
         float targetSpeed = _input.sprint ? sprintSpeed : moveSpeed;
-
-        // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
         // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is no input, set the target speed to 0
@@ -135,8 +133,7 @@ public class PlayerController : MonoBehaviour
 
         // a reference to the players current horizontal velocity
         float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-
-
+        
         float speedOffset = 0.1f;
         float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
@@ -159,7 +156,7 @@ public class PlayerController : MonoBehaviour
 
         // normalise input direction
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
+        
         // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is a move input rotate player when the player is moving
         if (_input.move != Vector2.zero)
@@ -175,14 +172,11 @@ public class PlayerController : MonoBehaviour
 
 
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
-        // TODO: Allow lane switch. Z is disabled for now.
-        targetDirection.z = 0.0f;
         
         // move the player
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-
+        
         // update animator if using character
         if (_hasAnimator)
         {
@@ -190,6 +184,7 @@ public class PlayerController : MonoBehaviour
             _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
         }
     }
+
 
     private void JumpAndGravity()
     {
@@ -260,6 +255,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public PlayerInputActionAsset GetInput()
+    {
+        return _input;
+    }
+    public Vector3 GetVelocity()
+    {
+        return _controller.velocity;
+    }
     private void OnDrawGizmosSelected()
     {
         Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
@@ -273,4 +276,6 @@ public class PlayerController : MonoBehaviour
             new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
             GroundedRadius);
     }
+
+
 }

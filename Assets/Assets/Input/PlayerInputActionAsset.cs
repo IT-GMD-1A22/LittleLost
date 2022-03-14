@@ -15,7 +15,7 @@ public class PlayerInputActionAsset : MonoBehaviour
     public bool sprint;
 
     [Header("Movement Settings")] public bool analogMovement;
-
+    public bool takeZMovement = true;
 #if !UNITY_IOS || !UNITY_ANDROID
     [Header("Mouse Cursor Settings")] public bool cursorLocked = true;
     public bool cursorInputForLook = true;
@@ -42,6 +42,12 @@ public class PlayerInputActionAsset : MonoBehaviour
 
     public void MoveInput(Vector2 newMoveDirection)
     {
+        if (!takeZMovement)
+        {
+            // ensures no z movement is allowed unless specified
+            newMoveDirection.y = 0.0f;
+        }
+
         move = newMoveDirection;
     }
     

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -68,5 +69,15 @@ public class MoveToLocation : MonoBehaviour
             }
             
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.transform.parent = transform;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        other.gameObject.transform.parent = null;
     }
 }
