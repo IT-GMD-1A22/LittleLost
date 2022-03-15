@@ -82,6 +82,13 @@ public class PlayerLaneChanger : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("AllowLaneChange"))
+            allowLaneChange = true;
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("AllowLaneChange"))
