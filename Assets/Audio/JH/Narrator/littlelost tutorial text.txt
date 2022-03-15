@@ -1,0 +1,86 @@
+<Audio1>
+Welcome to Little Lost.
+
+<Audio2>
+I have made a little obstacle course that you have to try and pass.- But before we do that, we will have to look at the basics.
+
+<Audio3>
+You are lost and the objective is to find a way to get un-lost.
+
+<Audio4>
+To move left, press the left movement key. -
+To move right, press the right movement key. -
+You get the idea.
+
+<Audio5.1>
+Do that now!
+<Audio5.2>
+Do it already!
+<Audio5.3>
+We cant wait forever!
+<Audio5.4>
+You are so boring - Get going.
+
+<Audio6.1 - good>
+Amazing and totally unexpected. Whatever.
+<Audio6.2 - good>
+So you managed to follow directions? i am amazed - not really.
+<Audio6.3 - good>
+That went better than expected.
+
+<Audio7>
+It is also possible to Jump over obstacles and move faster by sprinting.
+
+<Audio8>
+Press the Jump button to jump. - You can also press the sprint button to sprint. Isnt that wild and unexpected?
+
+<Audio6>
+
+<Audio9>
+Now that you have the basics of movement settled. Lets look at some map specifics. That is. If you are able to learn it.
+
+<Audio10>
+Sometimes you will be able to switch lanes.- Whenever you can do that, it will be indicated somewhere on the map.
+
+<Audio11>
+See the indicator on the floor?- It indicates that you are able to walk a new path. Try that now by pressing either up key or down key.
+
+<Audio6>
+
+<Audio12.1>
+If you at one point manage to get yourself into trouble. You will be able to respawn at the latest activated respawn beacon. Try moving into the indicated area now.
+
+<Audio12.2>
+It is going to be funny, I cannot wait to see this.
+
+<Audio13>
+Wow- what a sight for sore eyes. Well, atleast you now know what not to do.- I guess you will see a lot of that.
+
+<Audio14>
+That is it. I will keep an eye on you while you make a fool of yourself. Now get unlost!
+
+
+<dying1>
+oh my god. Did you really just do that?
+<dying2>
+That was really funny. Try that again!
+<dying3>
+What if you do that again, but backwards?
+<dying4>
+How complicated can this even be?
+
+
+<winner1>
+Okay. Okay. So you managed to finish this level. Good for you. I guess i will have to make it harder for you.
+
+
+
+
+
+
+
+
+
+
+
+
