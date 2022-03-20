@@ -20,8 +20,11 @@ public class SpawnBeaconManager : MonoBehaviour
 
     [SerializeField] private bool spawnActivated;
 
+    private SpawnManager _spawnManager;
+    
     private void Awake()
     {
+        _spawnManager = FindObjectOfType<SpawnManager>();
         hasGlowCircle = transform.parent.Find("RespawnCircle").TryGetComponent(out Renderer glowCircleRendererOut);
         glowCircleRenderer = glowCircleRendererOut;
         hasFloorIndicator = transform.parent.Find("FloorIndicator").TryGetComponent(out Renderer floorIndicatorRendererOut);
@@ -39,6 +42,7 @@ public class SpawnBeaconManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             spawnActivated = true;
+            _spawnManager.SetNewSpawnPoint(transform.parent);
         }
         if (hasGlowCircle)
             glowCircleRenderer.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");

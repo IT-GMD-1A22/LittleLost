@@ -419,6 +419,7 @@ GameObject:
   - component: {fileID: 2139771305422942672}
   - component: {fileID: 2139771304583302103}
   - component: {fileID: 2139771304583302090}
+  - component: {fileID: -5307016614333202787}
   - component: {fileID: 2139771304583302091}
   - component: {fileID: 2139771304583302092}
   - component: {fileID: 2139771304583302093}
@@ -441,7 +442,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139771304583302095}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -10.59, y: -43.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -449,7 +450,7 @@ Transform:
   - {fileID: 2139771305702223079}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!143 &2139771304583302103
 CharacterController:
   m_ObjectHideFlags: 0
@@ -483,19 +484,31 @@ MonoBehaviour:
   moveSpeed: 2
   sprintSpeed: 5
   rotationSmoothTime: 0.12
-  SpeedChangeRate: 5
+  SpeedChangeRate: 10
   JumpHeight: 1.2
   Gravity: -15
-  JumpTimeout: 0.01
+  JumpTimeout: 0.2
   FallTimeout: 0.15
   Grounded: 1
-  GroundedOffset: 0.87
+  GroundedOffset: 1
   GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
     m_Bits: 1
-  allowZMovement: 0
-  _mainCamera: {fileID: 0}
+--- !u!114 &-5307016614333202787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139771304583302095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56d9f3777a980b4d91629698a246a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hasAnimator: 0
+  _animator: {fileID: 0}
 --- !u!114 &2139771304583302091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,6 +554,7 @@ MonoBehaviour:
   move: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  enableInput: 1
   analogMovement: 0
   takeZMovement: 1
   cursorLocked: 0
@@ -679,7 +693,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f25b37a24a4199f40a3a4ccd25bb00b2, type: 3}
   hopClips:
   - {fileID: 8300000, guid: 2d06d8020b425a741b48131bd4a95f51, type: 3}
-  _animator: {fileID: 0}
 --- !u!114 &2139771304583302094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,8 +706,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowLaneChange: 0
-  allowChangeZPlus: 0
-  allowChangeZMinus: 0
   changing: 0
   snapZ: 0
 --- !u!114 &2139771304583302089
@@ -726,8 +737,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5890bfc56184d2c4fbe3ddfc825b73b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultZoom: 0
-  maxZoom: 0
+  defaultZoom: 12
+  maxZoom: 15
   zoomSpeed: 1
 --- !u!1 &2139771304647442886
 GameObject:

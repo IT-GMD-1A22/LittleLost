@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")] [Tooltip("Move speed of the character in m/s")]
@@ -51,38 +52,30 @@ public class PlayerController : MonoBehaviour
 
     // player
     private float _speed;
-    private float _animationBlend;
     private float _targetRotation = 0.0f;
     private float _rotationVelocity;
     private float _verticalVelocity;
     private float _terminalVelocity = 53.0f;
-    public bool allowZMovement = false;
 
     // timeout deltatime
     private float _jumpTimeoutDelta;
     private float _fallTimeoutDelta;
-
-    // animation IDs
-    private int _animIDSpeed;
-    private int _animIDGrounded;
-    private int _animIDJump;
-    private int _animIDFreeFall;
-    private int _animIDMotionSpeed;
-
-    private Animator _animator;
+    
+    private PlayerAnimationController _animController;
+    private bool _hasAnimController;
+    
     private CharacterController _controller;
     private PlayerInputActionAsset _input;
-    public GameObject _mainCamera;
-
-    private bool _hasAnimator;
+    private GameObject _mainCamera;
+    
 
     private void Start()
     {
-        _hasAnimator = TryGetComponent(out _animator);
+        _hasAnimController = TryGetComponent(out _animController);
+        
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<PlayerInputActionAsset>();
-
-        AssignAnimationIDs();
+        _mainCamera = GameObject.Find("Main Camera");
 
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
@@ -91,21 +84,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _hasAnimator = TryGetComponent(out _animator);
-        
         JumpAndGravity();
         GroundedCheck();
         Move();
     }
 
-    private void AssignAnimationIDs()
-    {
-        _animIDSpeed = Animator.StringToHash("Speed");
-        _animIDGrounded = Animator.StringToHash("Grounded");
-        _animIDJump = Animator.StringToHash("Jump");
-        _animIDFreeFall = Animator.StringToHash("FreeFall");
-        _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-    }
 
     private void GroundedCheck()
     {
@@ -114,11 +97,8 @@ public class PlayerController : MonoBehaviour
             transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
-        // update animator if using character
-        if (_hasAnimator)
-        {
-            _animator.SetBool(_animIDGrounded, Grounded);
-        }
+        if (_hasAnimController)
+            _animController.SetGroundedAnimation(Grounded);
     }
     
     
@@ -151,9 +131,8 @@ public class PlayerController : MonoBehaviour
         {
             _speed = targetSpeed;
         }
-
-        _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-
+        
+        
         // normalise input direction
         Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
         
@@ -169,20 +148,15 @@ public class PlayerController : MonoBehaviour
             // rotate to face input direction relative to camera position
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
-
-
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
         
         // move the player
         _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                          new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
         
-        // update animator if using character
-        if (_hasAnimator)
-        {
-            _animator.SetFloat(_animIDSpeed, _animationBlend);
-            _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-        }
+        // update movement animations
+        if (_hasAnimController)
+            _animController.UpdateMovementAnimation(inputMagnitude, targetSpeed, Time.deltaTime * SpeedChangeRate);
     }
 
 
@@ -193,12 +167,8 @@ public class PlayerController : MonoBehaviour
             // reset the fall timeout timer
             _fallTimeoutDelta = FallTimeout;
 
-            // update animator if using character
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDJump, false);
-                _animator.SetBool(_animIDFreeFall, false);
-            }
+            if (_hasAnimController)
+                _animController.ResetFallJumpAnimation();
 
             // stop our velocity dropping infinitely when grounded
             if (_verticalVelocity < 0.0f)
@@ -211,12 +181,10 @@ public class PlayerController : MonoBehaviour
             {
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
                 _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
+                
                 // update animator if using character
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDJump, true);
-                }
+                if (_hasAnimController)
+                    _animController.SetJumpAnimation(true);
             }
 
             // jump timeout
@@ -238,10 +206,8 @@ public class PlayerController : MonoBehaviour
             else
             {
                 // update animator if using character
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDFreeFall, true);
-                }
+                if (_hasAnimController)
+                    _animController.SetFallAnimation(true);
             }
 
             // if we are not grounded, do not jump
@@ -261,6 +227,8 @@ public class PlayerController : MonoBehaviour
     }
     public Vector3 GetVelocity()
     {
+        if (_controller == null)
+            return Vector3.zero;
         return _controller.velocity;
     }
     private void OnDrawGizmosSelected()

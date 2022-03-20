@@ -11,24 +11,22 @@ using UnityEngine;
 public class PlayerLaneChanger : MonoBehaviour
 { 
     private PlayerController _controller;
+    private float originalZ;
     [SerializeField] private bool allowLaneChange;
-
-    [SerializeField] private bool allowChangeZPlus;
-    [SerializeField] private bool allowChangeZMinus;
-
+    [SerializeField] private bool changing;
+    [SerializeField] private float snapZ;
+    
     private void Awake()
     {
         _controller = GetComponent<PlayerController>();
     }
-
-    [SerializeField] private bool changing;
-    [SerializeField] private float snapZ;
-
-    private float originalZ;
-
+    
     // Late update to ensure that update from playercontroller has been applied (Fixed -> update -> lateupdate)
     private void LateUpdate()
     {
+        if (_controller == null || _controller.GetInput() == null)
+            return;
+        
         _controller.GetInput().takeZMovement = allowLaneChange && !changing;
         var transformPosition = transform.position;
         if (allowLaneChange && !changing)
