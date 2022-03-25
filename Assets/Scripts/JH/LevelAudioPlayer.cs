@@ -57,6 +57,13 @@ public class LevelAudioPlayer : MonoBehaviour
         var clips = _audioFiles.Find(x => x.type.Equals(tag));
         _playQueue.Enqueue(clips.clips[Random.Range(0, clips.clips.Length)]);
     }
+
+    public void PlayClipWithTagInterruptFirst(string tag)
+    {
+        _playQueue.Clear();
+        _audioSource.Stop();
+        PlayClipWithTag(tag);
+    }
     
     public void AddClipToQueue(AudioClip[] clip, bool interrupt = false)
     {
@@ -72,8 +79,7 @@ public class LevelAudioPlayer : MonoBehaviour
         }
        
     }
-
-
+    
     public float GetQueuePlayLength()
     {
         float length = 0f;
@@ -84,65 +90,7 @@ public class LevelAudioPlayer : MonoBehaviour
 
         return length;
     }
-    //
-    // public IEnumerator PlayAudioClips(AudioClip[] clips)
-    // {
-    //     if (clips.Length > 0)
-    //     {
-    //         for (int i = 0; i < clips.Length; i++)
-    //         {
-    //             _audioSource.PlayOneShot(clips[i]);
-    //             yield return new WaitForSeconds(clips[i].length);
-    //         }
-    //     }
-    // }
-    //
-    // public void PlayAudioClipWithName(string name)
-    // {
-    //     var clip = audioFiles.SelectMany(af => af.clips)
-    //         .FirstOrDefault(clip => clip.name.Equals(name));
-    //     Debug.Log("playing clip: " + clip.name);
-    //     if (clip != null)
-    //     {
-    //         _audioSource.PlayOneShot(clip);
-    //     }
-    // }
-    // public void PlayAudioClip(string type, bool playAllInArray = false)
-    // {
-    //     try
-    //     {
-    //         var clips = audioFiles.Find(x => x.type.Equals(type));
-    //         if (!playAllInArray)
-    //         {
-    //             _audioSource.PlayOneShot(clips.clips[Random.Range(0, clips.clips.Length)]);
-    //         }
-    //         else
-    //         {
-    //             StartCoroutine(PlayAudioClips(clips.clips));
-    //         }
-    //         
-    //         
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         Debug.Log("No audio clip found: " + e.Message);
-    //     }
-    // }
-
-    // public float GetClipsLength(string type)
-    // {
-    //     float length = 0f;
-    //     var clips = audioFiles.Find(x => x.type.Equals(type));
-    //     
-    //     foreach (var clip in clips.clips)
-    //     {
-    //         length += clip.length;
-    //     }
-    //
-    //     return length;
-    // } 
-
-
+    
 }
 
 

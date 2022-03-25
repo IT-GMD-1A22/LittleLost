@@ -40,10 +40,10 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator DisableMovementUntil(float delay)
     {
-        var playerInputActionAsset = currentPlayer.GetComponent<PlayerInputActionAsset>();
-        playerInputActionAsset.enableInput = false;
+        var controller = currentPlayer.GetComponent<PlayerController>();
+        controller.disablePlayerInput = true;
         yield return new WaitForSeconds(delay);
-        playerInputActionAsset.enableInput = true;
+        controller.disablePlayerInput = false;
     }
     
     public void SetNewSpawnPoint(Transform position)

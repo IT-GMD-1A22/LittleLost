@@ -11,42 +11,46 @@ using UnityEngine;
  */
 public class SpawnBeaconManager : MonoBehaviour
 {
+    private const string EMISSION_PROPERTY = "_EMISSION";
 
-    [SerializeField] private bool hasGlowCircle;
-    private Renderer glowCircleRenderer;
-
-    [SerializeField] private bool hasFloorIndicator;
-    private Renderer floorIndicatorRenderer;
-
-    [SerializeField] private bool spawnActivated;
-
-    private SpawnManager _spawnManager;
+    [SerializeField] private Renderer[] enableGlowOnTrigger;
+    [SerializeField] private Renderer[] disableGlowOnTrigger;
     
+    [ReadOnly, SerializeField] private bool spawnActivated;
+    private SpawnManager _spawnManager;
+
     private void Awake()
     {
         _spawnManager = FindObjectOfType<SpawnManager>();
-        hasGlowCircle = transform.parent.Find("RespawnCircle").TryGetComponent(out Renderer glowCircleRendererOut);
-        glowCircleRenderer = glowCircleRendererOut;
-        hasFloorIndicator = transform.parent.Find("FloorIndicator").TryGetComponent(out Renderer floorIndicatorRendererOut);
-        floorIndicatorRenderer = floorIndicatorRendererOut;
-      
-        if (hasGlowCircle)
-            glowCircleRenderer.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
-        if (hasFloorIndicator)
-            floorIndicatorRenderer.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
 
+        foreach (var glowElement in enableGlowOnTrigger)
+        {
+            glowElement.material.DisableKeyword(EMISSION_PROPERTY);
+        }
+
+        foreach (var glowElement in disableGlowOnTrigger)
+        {
+            glowElement.material.EnableKeyword(EMISSION_PROPERTY);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && spawnActivated == false)
         {
             spawnActivated = true;
             _spawnManager.SetNewSpawnPoint(transform.parent);
+
+
+            foreach (var glowElement in enableGlowOnTrigger)
+            {
+                glowElement.material.EnableKeyword(EMISSION_PROPERTY);
+            }
+
+            foreach (var glowElement in disableGlowOnTrigger)
+            {
+                glowElement.material.DisableKeyword(EMISSION_PROPERTY);
+            }
         }
-        if (hasGlowCircle)
-            glowCircleRenderer.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-        if (hasFloorIndicator)
-            floorIndicatorRenderer.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
     }
 }

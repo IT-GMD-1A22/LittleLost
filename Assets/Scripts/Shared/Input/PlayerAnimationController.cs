@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerAnimationController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerAnimationController : MonoBehaviour
     private Animator _animator;
     
     private float _animationBlend;
+    [SerializeField] private int numberOfDeathAnimations = 5;
     
     // animation IDs
     private int _animIDSpeed;
@@ -16,6 +18,7 @@ public class PlayerAnimationController : MonoBehaviour
     private int _animIDJump;
     private int _animIDFreeFall;
     private int _animIDMotionSpeed;
+    private int _animIDKillTrigger;
     private int _animIDKill;
 
 
@@ -33,6 +36,7 @@ public class PlayerAnimationController : MonoBehaviour
         _animIDJump = Animator.StringToHash("Jump");
         _animIDFreeFall = Animator.StringToHash("FreeFall");
         _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+        _animIDKillTrigger = Animator.StringToHash("KillTrigger");
         _animIDKill = Animator.StringToHash("Kill");
     }
 
@@ -78,8 +82,14 @@ public class PlayerAnimationController : MonoBehaviour
         SetFallAnimation(false);
     }
 
-    public void KillAnimation()
+    public void KillAnimation(bool random, int killAnimation = 0)
     {
-        _animator.SetBool(_animIDKill, true);
+        var killAnim = killAnimation;
+        if (random)
+        {
+            killAnim = Random.Range(0, numberOfDeathAnimations);
+        }
+        _animator.SetInteger(_animIDKill ,killAnim);
+        _animator.SetTrigger(_animIDKillTrigger);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Cinemachine.Utility;
 using UnityEngine;
 
 /*
@@ -22,7 +23,7 @@ public class PlayerLaneChanger : MonoBehaviour
     }
     
     // Late update to ensure that update from playercontroller has been applied (Fixed -> update -> lateupdate)
-    private void LateUpdate()
+    private void Update()
     {
         if (_controller == null || _controller.GetInput() == null)
             return;
@@ -70,7 +71,7 @@ public class PlayerLaneChanger : MonoBehaviour
                 // tell player controller we are moving in direction
                 _controller.GetInput().move.y = Mathf.Clamp(snapZ - transformPosition.z, -1, 1);
             }
-            else if (Math.Abs(transformPosition.z - snapZ) < 0.1f)
+            else if (Math.Abs(transformPosition.z - snapZ) < 0.2f)
             {
                 // check if we are at goal destination, if so, disable the movement and tell
                 // player controller top stop move.

@@ -78,6 +78,27 @@ What if you do that again, but backwards?
 <dying4>
 How complicated can this even be?
 
+<hurt1>
+Ouch. That gotta hurt.
+<hurt2>
+yikes. i am glad that wasnt me!
+<hurt3>
+Uh. Oh my. This game should be PG rated!
+<hurt4>
+You have something in your teeth
+<hurt5>
+You look like an avocado had sex with an older, more disgusting avocado
+
+
+
+<random qoute1>
+Say the magic words, Fat Gandalf
+<random qoute2>
+I just want to get to know the real you. Not the short, 2-dimensional sex object peddled by Hollywood.
+
+<blade_joke>
+I was going to make a joke about blunt blades... but i don't see the point
+
 
 <winner1>
 Okay. Okay. So you managed to finish this level. Good for you. I guess i will have to make it harder for you.

@@ -13,7 +13,6 @@ public class PlayerInputActionAsset : MonoBehaviour
     [Header("Character Input Values")] public Vector2 move;
     public bool jump;
     public bool sprint;
-    public bool enableInput = true;
     [Header("Movement Settings")] public bool analogMovement;
     public bool takeZMovement = true;
 #if !UNITY_IOS || !UNITY_ANDROID
@@ -42,9 +41,6 @@ public class PlayerInputActionAsset : MonoBehaviour
 
     public void MoveInput(Vector2 newMoveDirection)
     {
-        if (!enableInput)
-            return;
-        
         if (!takeZMovement)
         {
             // ensures no z movement is allowed unless specified
@@ -56,17 +52,11 @@ public class PlayerInputActionAsset : MonoBehaviour
     
     public void JumpInput(bool newJumpState)
     {
-        if (!enableInput)
-            return;
-        
         jump = newJumpState;
     }
 
     public void SprintInput(bool newSprintState)
     {
-        if (!enableInput)
-            return;
-        
         sprint = newSprintState;
     }
 
