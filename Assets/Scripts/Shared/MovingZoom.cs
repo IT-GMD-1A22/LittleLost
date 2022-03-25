@@ -30,6 +30,8 @@ public class MovingZoom : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (_controller == null)
+            return;
         targetZoom = _controller.GetVelocity().x != 0.0f ? maxZoom : defaultZoom;
         currentzoom = Mathf.Lerp(currentzoom, targetZoom, zoomSpeed * Time.deltaTime);
         _transposer.m_CameraDistance = currentzoom;

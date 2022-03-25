@@ -10,6 +10,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Player")] [Tooltip("Move speed of the character in m/s")]
@@ -51,38 +52,35 @@ public class PlayerController : MonoBehaviour
 
     // player
     private float _speed;
-    private float _animationBlend;
     private float _targetRotation = 0.0f;
     private float _rotationVelocity;
     private float _verticalVelocity;
     private float _terminalVelocity = 53.0f;
-    public bool allowZMovement = false;
+    private Vector2 inputMove;
+    private bool inputJump;
+    private bool inputSprint;
+    public bool disablePlayerInput;
+
 
     // timeout deltatime
     private float _jumpTimeoutDelta;
     private float _fallTimeoutDelta;
 
-    // animation IDs
-    private int _animIDSpeed;
-    private int _animIDGrounded;
-    private int _animIDJump;
-    private int _animIDFreeFall;
-    private int _animIDMotionSpeed;
+    private PlayerAnimationController _animController;
+    private bool _hasAnimController;
 
-    private Animator _animator;
     private CharacterController _controller;
-    private PlayerInputActionAsset _input;
-    public GameObject _mainCamera;
+    private PlayerInputActionAsset _inputActionAsset;
+    private GameObject _mainCamera;
 
-    private bool _hasAnimator;
 
     private void Start()
     {
-        _hasAnimator = TryGetComponent(out _animator);
-        _controller = GetComponent<CharacterController>();
-        _input = GetComponent<PlayerInputActionAsset>();
+        _hasAnimController = TryGetComponent(out _animController);
 
-        AssignAnimationIDs();
+        _controller = GetComponent<CharacterController>();
+        _inputActionAsset = GetComponent<PlayerInputActionAsset>();
+        _mainCamera = GameObject.Find("Main Camera");
 
         // reset our timeouts on start
         _jumpTimeoutDelta = JumpTimeout;
@@ -91,51 +89,57 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _hasAnimator = TryGetComponent(out _animator);
-        
+        PlayerMovementCheck();
         JumpAndGravity();
         GroundedCheck();
         Move();
     }
 
-    private void AssignAnimationIDs()
+    private void PlayerMovementCheck()
     {
-        _animIDSpeed = Animator.StringToHash("Speed");
-        _animIDGrounded = Animator.StringToHash("Grounded");
-        _animIDJump = Animator.StringToHash("Jump");
-        _animIDFreeFall = Animator.StringToHash("FreeFall");
-        _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+        if (disablePlayerInput)
+        {
+            // disables input by setting a temporary variable as placeholder.
+            inputMove = Vector2.zero;
+            inputJump = false;
+            inputSprint = false;
+        }
+        else
+        {
+            inputMove = _inputActionAsset.move;
+            inputJump = _inputActionAsset.jump;
+            inputSprint = _inputActionAsset.sprint;
+        }
     }
 
     private void GroundedCheck()
     {
         // set sphere position, with offset
-        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
-            transform.position.z);
+        var trans = transform.position;
+        Vector3 spherePosition = new Vector3(trans.x, trans.y - GroundedOffset,
+            trans.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
-        // update animator if using character
-        if (_hasAnimator)
-        {
-            _animator.SetBool(_animIDGrounded, Grounded);
-        }
+        if (_hasAnimController)
+            _animController.SetGroundedAnimation(Grounded);
     }
-    
-    
+
+
     private void Move()
     {
         // set target speed based on move speed, sprint speed and if sprint is pressed
-        float targetSpeed = _input.sprint ? sprintSpeed : moveSpeed;
+        float targetSpeed = inputSprint ? sprintSpeed : moveSpeed;
 
         // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is no input, set the target speed to 0
-        if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+        if (inputMove == Vector2.zero) targetSpeed = 0.0f;
 
         // a reference to the players current horizontal velocity
-        float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
-        
+        var vel = _controller.velocity;
+        float currentHorizontalSpeed = new Vector3(vel.x, 0.0f, vel.z).magnitude;
+
         float speedOffset = 0.1f;
-        float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+        float inputMagnitude = _inputActionAsset.analogMovement ? inputMove.magnitude : 1f;
 
         // accelerate or decelerate to target speed
         if (currentHorizontalSpeed < targetSpeed - speedOffset || currentHorizontalSpeed > targetSpeed + speedOffset)
@@ -143,7 +147,7 @@ public class PlayerController : MonoBehaviour
             // creates curved result rather than a linear one giving a more organic speed change
             // note T in Lerp is clamped, so we don't need to clamp our speed
             _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude, Time.deltaTime * SpeedChangeRate);
-
+            
             // round speed to 3 decimal places
             _speed = Mathf.Round(_speed * 1000f) / 1000f;
         }
@@ -152,14 +156,13 @@ public class PlayerController : MonoBehaviour
             _speed = targetSpeed;
         }
 
-        _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
 
         // normalise input direction
-        Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-        
+        Vector3 inputDirection = new Vector3(inputMove.x, 0.0f, inputMove.y).normalized;
+
         // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
         // if there is a move input rotate player when the player is moving
-        if (_input.move != Vector2.zero)
+        if (inputMove != Vector2.zero)
         {
             _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                               _mainCamera.transform.eulerAngles.y;
@@ -170,21 +173,26 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
         }
 
-
         Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-        
-        // move the player
-        _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                         new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-        
-        // update animator if using character
-        if (_hasAnimator)
-        {
-            _animator.SetFloat(_animIDSpeed, _animationBlend);
-            _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-        }
-    }
 
+        // move the player or apply external force
+        if (externalForce.magnitude > sprintSpeed)
+        {
+            _controller.Move(new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime +
+                             externalForce * Time.deltaTime);
+            externalForce = Vector3.Lerp(externalForce, Vector3.zero, 5f * Time.deltaTime);
+        }
+        else
+        {
+
+            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+        }
+
+        // update movement animations
+        if (_hasAnimController)
+            _animController.UpdateMovementAnimation(inputMagnitude, targetSpeed, Time.deltaTime * SpeedChangeRate);
+    }
 
     private void JumpAndGravity()
     {
@@ -193,12 +201,8 @@ public class PlayerController : MonoBehaviour
             // reset the fall timeout timer
             _fallTimeoutDelta = FallTimeout;
 
-            // update animator if using character
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDJump, false);
-                _animator.SetBool(_animIDFreeFall, false);
-            }
+            if (_hasAnimController)
+                _animController.ResetFallJumpAnimation();
 
             // stop our velocity dropping infinitely when grounded
             if (_verticalVelocity < 0.0f)
@@ -207,16 +211,14 @@ public class PlayerController : MonoBehaviour
             }
 
             // Jump
-            if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+            if (inputJump && _jumpTimeoutDelta <= 0.0f)
             {
                 // the square root of H * -2 * G = how much velocity needed to reach desired height
                 _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
                 // update animator if using character
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDJump, true);
-                }
+                if (_hasAnimController)
+                    _animController.SetJumpAnimation(true);
             }
 
             // jump timeout
@@ -238,14 +240,12 @@ public class PlayerController : MonoBehaviour
             else
             {
                 // update animator if using character
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDFreeFall, true);
-                }
+                if (_hasAnimController)
+                    _animController.SetFallAnimation(true);
             }
 
             // if we are not grounded, do not jump
-            _input.jump = false;
+            _inputActionAsset.jump = false;
         }
 
         // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -257,12 +257,24 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInputActionAsset GetInput()
     {
-        return _input;
+        return _inputActionAsset;
     }
+
+    private Vector3 externalForce;
+
+    public void AddExternalForce(Vector3 direction, float force)
+    {
+        direction.Normalize();
+        externalForce += direction.normalized * force / 3f; //3f=mass fictives
+    }
+
     public Vector3 GetVelocity()
     {
+        if (_controller == null)
+            return Vector3.zero;
         return _controller.velocity;
     }
+
     private void OnDrawGizmosSelected()
     {
         Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
@@ -272,10 +284,9 @@ public class PlayerController : MonoBehaviour
         else Gizmos.color = transparentRed;
 
         // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
+        var trans = transform.position;
         Gizmos.DrawSphere(
-            new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
+            new Vector3(trans.x, trans.y - GroundedOffset, trans.z),
             GroundedRadius);
     }
-
-
 }

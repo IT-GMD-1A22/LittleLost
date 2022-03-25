@@ -27,6 +27,7 @@ public class MoveToLocation : MonoBehaviour
     private float _waitTimer;
     private Vector3 _currentDestination;
     private Vector3 _originalPosition;
+    
 
 
 
@@ -71,7 +72,7 @@ public class MoveToLocation : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         other.gameObject.transform.parent = transform;
     }
