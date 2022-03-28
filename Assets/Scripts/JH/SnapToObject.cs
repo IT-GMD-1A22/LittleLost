@@ -35,8 +35,8 @@ public class SnapToObject : MonoBehaviour
         if (player)
         {
             player.GetComponent<Animator>().SetBool("NoAnimation", false);
+            player.GetComponent<PlayerLaneChanger>().enabled = true;
             player.GetComponent<CharacterController>().enabled = true;
-            player.GetComponent<PlayerLaneChanger>().enabled = false;
         }
     }
     
