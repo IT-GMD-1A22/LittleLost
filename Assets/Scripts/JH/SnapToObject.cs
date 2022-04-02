@@ -1,34 +1,54 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Used to snap player to plane.
+ * Can also unsnap when player arrive at destination
+ *
+ * JH
+ */
 public class SnapToObject : MonoBehaviour
 {
-    public GameObject cube;
+    private GameObject player;
+    public bool shouldSnapPlayer;
 
     private void Update()
     {
-        if (cube != null)
+        if (player != null)
         {
             var parentTransform = transform.parent.transform;
 
-            cube.transform.position = parentTransform.position;
-            // cube.transform.rotation = parentTransform.rotation;
-            cube.transform.rotation = parentTransform.rotation * new Quaternion(1f, 90f, 1f, 1f);
-
+            player.transform.position = parentTransform.position;
+            player.transform.rotation = parentTransform.rotation * new Quaternion(1f, 90f, 1f, 1f);
         }
-
     }
 
+    private void snapPlayer(Collider other)
+    {
+        player = other.gameObject;
+        player.GetComponent<Animator>().SetBool("NoAnimation", true);
+        player.GetComponent<CharacterController>().enabled = false;
+        player.GetComponent<PlayerLaneChanger>().enabled = false;
+    }
+
+    public void unSnapPlayer()
+    {
+        if (player)
+        {
+            player.GetComponent<Animator>().SetBool("NoAnimation", false);
+            player.GetComponent<PlayerLaneChanger>().enabled = true;
+            player.GetComponent<CharacterController>().enabled = true;
+        }
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            cube = other.gameObject;
-            cube.GetComponent<Animator>().SetBool("NoAnimation", true);
-            cube.GetComponent<CharacterController>().enabled = false;
-            cube.GetComponent<PlayerLaneChanger>().enabled = false;
+            if (shouldSnapPlayer)
+            {
+                snapPlayer(other);
+            }
+            
         }
     }
 }
