@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 /*
  * Kills the player and respawns it at the latest respawn beacon.
@@ -16,8 +17,8 @@ public class KillTrigger : MonoBehaviour
     [SerializeField] private bool triggerPlayerAnimation;
     [SerializeField] private float waitBeforeSpawn = 4f;
     [SerializeField] private string audioTagToPlay = "dying";
-    [ReadOnly, SerializeField] private bool runningRoutine = false;
-    
+    [ReadOnly, SerializeField] private bool runningRoutine;
+
     private void Awake()
     {
         _spawn = FindObjectOfType<SpawnManager>();
@@ -28,7 +29,15 @@ public class KillTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") && !runningRoutine)
         {
-            Debug.Log("triggered");
+            runningRoutine = true;
+            StartCoroutine(StartDeathRoutine(other.gameObject));
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player") && !runningRoutine)
+        {
             runningRoutine = true;
             StartCoroutine(StartDeathRoutine(other.gameObject));
         }

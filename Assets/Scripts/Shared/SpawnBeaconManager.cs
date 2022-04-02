@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 /*
  * Spawn beacon indicator, turns on and off emission to indicate
@@ -15,7 +16,7 @@ public class SpawnBeaconManager : MonoBehaviour
 
     [SerializeField] private Renderer[] enableGlowOnTrigger;
     [SerializeField] private Renderer[] disableGlowOnTrigger;
-    
+
     [ReadOnly, SerializeField] private bool spawnActivated;
     private SpawnManager _spawnManager;
 
@@ -36,7 +37,15 @@ public class SpawnBeaconManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && spawnActivated == false)
+        if (other.CompareTag("Player"))
+        {
+            ActivateBeacon();
+        }
+    }
+
+    public void ActivateBeacon()
+    {
+        if (!spawnActivated)
         {
             spawnActivated = true;
             _spawnManager.SetNewSpawnPoint(transform.parent);
@@ -52,5 +61,6 @@ public class SpawnBeaconManager : MonoBehaviour
                 glowElement.material.DisableKeyword(EMISSION_PROPERTY);
             }
         }
+        
     }
 }
