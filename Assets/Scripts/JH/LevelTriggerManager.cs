@@ -46,7 +46,8 @@ public class LevelTriggerManager : MonoBehaviour
 
     private void Play(AudioClip[] clips)
     {
-        _levelAudioPlayer.AddClipToQueue(clips, interruptPreviousAudioBeforePlaying);
+        if (_levelAudioPlayer)
+            _levelAudioPlayer.AddClipToQueue(clips, interruptPreviousAudioBeforePlaying);
     }
 
 
