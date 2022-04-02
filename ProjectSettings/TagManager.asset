@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - AllowLaneChange
+  - Boss
+  - Marble
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - PlayerImpenetrable
   - 
   - Player
   - 
@@ -26,7 +28,7 @@ TagManager:
   - Post-Processing
   - cam
   - 
-  - 
+  - marble
   - 
   - 
   - 
