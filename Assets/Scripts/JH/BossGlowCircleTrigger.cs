@@ -15,6 +15,7 @@ public class BossGlowCircleTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+            _bossLevelManager.IndicatorTriggered();
     }
 }

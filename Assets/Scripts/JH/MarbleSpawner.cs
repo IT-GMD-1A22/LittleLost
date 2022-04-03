@@ -11,9 +11,9 @@ public class MarbleSpawner : MonoBehaviour
     [SerializeField] private Transform RightSpawnPoint;
     [SerializeField] private List<GameObject> MarblePrefabs;
     [SerializeField] private float maxSpawnTimer = 1f;
-    [SerializeField] private float minSpawnTimer = 0.1f;
+    [SerializeField] private float minSpawnTimer = 0.05f;
     [SerializeField] private float tick = 0.12f;
-    [SerializeField] private float destroyTimer = 5f;
+    [SerializeField] private float destroyTimer = 7f;
 
     private float initialMaxSpawnTimer;
     private float spawnTimer;

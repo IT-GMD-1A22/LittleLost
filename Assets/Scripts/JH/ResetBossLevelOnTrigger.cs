@@ -7,10 +7,12 @@ public class ResetBossLevelOnTrigger : MonoBehaviour
 {
 
     private MarbleSpawner _marbleSpawner;
+    private BossLevelManager _bossLevelManager;
 
     private void Awake()
     {
         _marbleSpawner = FindObjectOfType<MarbleSpawner>();
+        _bossLevelManager = FindObjectOfType<BossLevelManager>();
     }
 
 
@@ -25,5 +27,7 @@ public class ResetBossLevelOnTrigger : MonoBehaviour
     private void ResetLevel()
     {
         _marbleSpawner.ResetTimer();
+        _bossLevelManager.Restart();
+        
     }
 }

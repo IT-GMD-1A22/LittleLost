@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3006236136664598327}
   - component: {fileID: 4968480737810652098}
   - component: {fileID: 7754235246185275789}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GlowCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
