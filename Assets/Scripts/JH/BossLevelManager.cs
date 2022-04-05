@@ -75,11 +75,19 @@ public class BossLevelManager : MonoBehaviour
 
     private void SpawnAnIndicator()
     {
-        var laneIndex = Random.Range(0, 3);
-        var lane = _lanePoints[laneIndex];
-        var randomPoint = GetRandomVectorBetweenTwoVectors(lane[0].position, lane[1].position);
-        _spawnedIndicator = Instantiate(triggerIndicator, randomPoint, Quaternion.identity);
-        _spawnedIndicator.transform.parent = transform;
+        while (true)
+        {
+            var laneIndex = Random.Range(0, 3);
+            var lane = _lanePoints[laneIndex];
+            var randomPoint = GetRandomVectorBetweenTwoVectors(lane[0].position, lane[1].position);
+            if (_spawnedObstacle == null || Vector3.Distance(randomPoint, _spawnedObstacle.transform.position) > 2f)
+            {
+                _spawnedIndicator = Instantiate(triggerIndicator, randomPoint, Quaternion.identity);
+                _spawnedIndicator.transform.parent = transform;
+                _levelAudioPlayer.PlayClipWithTagInterruptFirst("bossBeacon");
+                break;
+            }
+        }
     }
 
     private void SpawnAnObstacle()

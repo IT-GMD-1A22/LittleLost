@@ -27,9 +27,6 @@ public class LevelTriggerManager : MonoBehaviour
 
 
     [Header("Settings")]
-    // TODO: Maybe disablemovementonaudio can be its own script looking for when audio is being played on the audio manager
-    // then it would work outside of trigger script also.
-    // [SerializeField] private bool disableMovementOnAudio;
     [SerializeField]
     private bool handleCompleteEventExternally = false;
 
@@ -46,13 +43,22 @@ public class LevelTriggerManager : MonoBehaviour
 
     private void Play(AudioClip[] clips)
     {
-        _levelAudioPlayer.AddClipToQueue(clips, interruptPreviousAudioBeforePlaying);
+        if (interruptPreviousAudioBeforePlaying)
+        {
+            Debug.Log("INTERUPTING AUDIO");
+            _levelAudioPlayer.StopCurrentlyPlayingAndClearQueue();
+        }
+
+        _levelAudioPlayer.AddClipToQueue(clips);
     }
 
 
     private IEnumerator RunEvent()
     {
-        yield return new WaitForSeconds(delayBeforeRunningEvent);
+        if (delayBeforeRunningEvent > 0)
+        {
+            yield return new WaitForSeconds(delayBeforeRunningEvent);
+        }
         Play(onTriggerEventAudioClips.ToArray());
 
         if (waitForAudioFinish)
