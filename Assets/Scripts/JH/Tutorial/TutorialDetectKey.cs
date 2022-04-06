@@ -8,7 +8,6 @@ public class TutorialDetectKey : MonoBehaviour
     private LevelTriggerManager _trigger;
     private PlayerInputActionAsset _input;
     [SerializeField] private bool detectJumpSprint;
-    [SerializeField] private bool detectLaneChange;
 
     [SerializeField] private bool hasJumped;
     [SerializeField] private bool hasSprinted;
@@ -37,15 +36,6 @@ public class TutorialDetectKey : MonoBehaviour
             {
                 _trigger.CompleteEvent();
                 detectJumpSprint = false;
-            }
-        }
-        else if (detectLaneChange)
-        {
-            if (!hasZMoved && _input.move.y != 0f)
-            {
-                hasZMoved = true;
-                detectLaneChange = false;
-                _trigger.CompleteEvent();
             }
         }
     }

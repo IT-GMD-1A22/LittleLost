@@ -14,10 +14,12 @@ using Random = UnityEngine.Random;
 public class LevelAudioPlayer : MonoBehaviour
 {
     [SerializeField] private List<AudioFiles> _audioFiles;
-    
+
     private AudioSource _audioSource;
     private Queue<AudioClip> _playQueue;
     private bool playing;
+    private Coroutine currentlyPlaying;
+
     private void Awake()
     {
         _playQueue = new Queue<AudioClip>();
@@ -27,16 +29,16 @@ public class LevelAudioPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (_playQueue.Count > 0 && playing == false)
-        {
-            playing = true;
-            StartCoroutine(PlayClip(_playQueue.Dequeue()));
-        }
+        if (_playQueue.Count <= 0 || playing) return;
+        
+        Debug.Log(Time.time);
+
+        playing = true;
+        currentlyPlaying = StartCoroutine(PlayClip(_playQueue.Dequeue()));
     }
 
     private IEnumerator PlayClip(AudioClip clip)
     {
-        
         _audioSource.PlayOneShot(clip);
         yield return new WaitForSeconds(clip.length);
         playing = false;
@@ -46,11 +48,13 @@ public class LevelAudioPlayer : MonoBehaviour
     {
         if (interrupt)
         {
-            _playQueue.Clear();
-            _audioSource.Stop();
+            StopCurrentlyPlayingAndClearQueue();
         }
+
         _playQueue.Enqueue(clip);
     }
+
+
 
     public void PlayClipWithTag(string tag)
     {
@@ -60,37 +64,40 @@ public class LevelAudioPlayer : MonoBehaviour
 
     public void PlayClipWithTagInterruptFirst(string tag)
     {
-        _playQueue.Clear();
-        _audioSource.Stop();
+        StopCurrentlyPlayingAndClearQueue();
         PlayClipWithTag(tag);
     }
-    
+
     public void AddClipToQueue(AudioClip[] clip, bool interrupt = false)
     {
         if (interrupt)
         {
-            _playQueue.Clear();
-            _audioSource.Stop();
+            StopCurrentlyPlayingAndClearQueue();
         }
 
-        for (int i = 0; i < clip.Length; i++)
+        foreach (var t in clip)
         {
-            _playQueue.Enqueue(clip[i]);
+            _playQueue.Enqueue(t);
         }
-       
+    }
+    
+    public void StopCurrentlyPlayingAndClearQueue()
+    {
+        if (currentlyPlaying != null)
+        {
+            StopCoroutine(currentlyPlaying);
+            currentlyPlaying = null;
+        }
+
+        playing = false;
+        _playQueue.Clear();
+        _audioSource.Stop();
     }
     
     public float GetQueuePlayLength()
     {
-        float length = 0f;
-        foreach (var clip in _playQueue)
-        {
-            length += clip.length;
-        }
-
-        return length;
+        return _playQueue.Sum(clip => clip.length);
     }
-    
 }
 
 
