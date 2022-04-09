@@ -1,8 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+ * Detects key used in the tutorial. Triggers external complete event
+ * from LevelTriggerManager.
+ *
+ * JH
+ */
 public class TutorialDetectKey : MonoBehaviour
 {
     private LevelTriggerManager _trigger;
@@ -11,7 +15,6 @@ public class TutorialDetectKey : MonoBehaviour
 
     [SerializeField] private bool hasJumped;
     [SerializeField] private bool hasSprinted;
-    [SerializeField] private bool hasZMoved;
 
     private void OnEnable()
     {
@@ -19,8 +22,7 @@ public class TutorialDetectKey : MonoBehaviour
         _trigger = GetComponent<LevelTriggerManager>();
     }
 
-
-    private void Update()
+    private void LateUpdate()
     {
         if (detectJumpSprint)
         {

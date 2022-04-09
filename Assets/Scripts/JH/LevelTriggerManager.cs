@@ -7,6 +7,7 @@ using UnityEngine.Events;
 /*
  * When specified trigger event is fired, plays audio and runs through
  * enable, disable and destroy of added gameobjects.
+ * Unity events has been added to give extra functionality.
  *
  * JH
  */

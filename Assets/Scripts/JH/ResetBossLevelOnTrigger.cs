@@ -1,8 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Resets boss level when collision enter.
+ *
+ * JH
+ */
 public class ResetBossLevelOnTrigger : MonoBehaviour
 {
 

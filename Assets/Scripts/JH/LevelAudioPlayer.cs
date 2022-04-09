@@ -6,7 +6,8 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 /*
- * Stores audio clips to be played on command.
+ * AudioManager that stores audio and exposes
+ * methods to play audio tags.
  *
  * JH
  */
@@ -19,6 +20,7 @@ public class LevelAudioPlayer : MonoBehaviour
     private Queue<AudioClip> _playQueue;
     private bool playing;
     private Coroutine currentlyPlaying;
+    private int lastRandom;
 
     private void Awake()
     {
@@ -30,8 +32,6 @@ public class LevelAudioPlayer : MonoBehaviour
     private void Update()
     {
         if (_playQueue.Count <= 0 || playing) return;
-        
-        Debug.Log(Time.time);
 
         playing = true;
         currentlyPlaying = StartCoroutine(PlayClip(_playQueue.Dequeue()));
@@ -59,7 +59,16 @@ public class LevelAudioPlayer : MonoBehaviour
     public void PlayClipWithTag(string tag)
     {
         var clips = _audioFiles.Find(x => x.type.Equals(tag));
-        _playQueue.Enqueue(clips.clips[Random.Range(0, clips.clips.Length)]);
+        var rand = Random.Range(0, clips.clips.Length);
+        if (clips.clips.Length > 1 && rand == lastRandom)
+        {
+            while (rand == lastRandom)
+            {
+                rand = Random.Range(0, clips.clips.Length);
+            }
+        }
+
+        _playQueue.Enqueue(clips.clips[rand]);
     }
 
     public void PlayClipWithTagInterruptFirst(string tag)

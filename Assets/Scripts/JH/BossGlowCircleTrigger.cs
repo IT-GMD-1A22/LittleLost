@@ -1,8 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Simple audio playing script for boss level.
+ * Plays audio when trigger enter, calls
+ * boss manager to tell it has been triggered.
+ *
+ * JH
+ */
 public class BossGlowCircleTrigger : MonoBehaviour
 {
     private BossLevelManager _bossLevelManager;

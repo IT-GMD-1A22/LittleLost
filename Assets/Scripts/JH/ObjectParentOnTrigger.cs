@@ -1,8 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * If player trigger stay or exit, parent or unparent player to trigger
+ *
+ * JH
+ */
 public class ObjectParentOnTrigger : MonoBehaviour
 {
     
