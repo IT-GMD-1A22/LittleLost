@@ -44,10 +44,8 @@ public class CheatCode : MonoBehaviour
         if (_index == _code.Length && orderedBeacons.Count > 0 && _inputTimer > 0f)
         {
             Debug.Log("Cheat activated");
-            var player = _spawnManager.currentPlayer;
-            player.GetComponent<CharacterController>().enabled = false;
-            player.transform.position = orderedBeacons[0].position;
-            player.GetComponent<CharacterController>().enabled = true;
+            var player = _spawnManager.currentPlayer.GetComponent<PlayerController>();
+            player.TeleportPlayerToVector(orderedBeacons[0].position);
             orderedBeacons.RemoveAt(0);
 
             _index = 0;

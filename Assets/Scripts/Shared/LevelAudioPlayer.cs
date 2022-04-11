@@ -59,7 +59,8 @@ public class LevelAudioPlayer : MonoBehaviour
     public void PlayClipWithTag(string tag)
     {
         var clips = _audioFiles.Find(x => x.type.Equals(tag));
-        var rand = Random.Range(0, clips.clips.Length);
+        if (clips.clips == null) return;
+            var rand = Random.Range(0, clips.clips.Length);
         if (clips.clips.Length > 1 && rand == lastRandom)
         {
             while (rand == lastRandom)

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /*
- * If player trigger stay or exit, parent or unparent player to trigger
+ * Sets player to parent or unparent of object when triggerec
  *
  * JH
  */
@@ -10,7 +10,6 @@ public class ObjectParentOnTrigger : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        
         if (other.CompareTag("Player"))
             other.transform.parent = transform.parent;
     }

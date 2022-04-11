@@ -29,7 +29,7 @@ public class LevelTriggerManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField]
-    private bool handleCompleteEventExternally = false;
+    private bool handleCompleteEventExternally;
 
     [SerializeField] private float delayBeforeRunningEvent = 0.0f;
     [SerializeField] private bool waitForAudioFinish;
@@ -46,7 +46,6 @@ public class LevelTriggerManager : MonoBehaviour
     {
         if (interruptPreviousAudioBeforePlaying)
         {
-            Debug.Log("INTERUPTING AUDIO");
             _levelAudioPlayer.StopCurrentlyPlayingAndClearQueue();
         }
 

@@ -11,16 +11,15 @@ public class BossLevelManager : MonoBehaviour
 {
     [Header("Boss")] 
     [SerializeField] private GameObject bossGameObject;
-    [ReadOnly, SerializeField] private int limbsLeft;
-    private readonly List<Transform> _bossLimbs = new List<Transform>();
-    private readonly List<Transform> _disabledBossLimbs = new List<Transform>();
+    private readonly List<Transform> _bossLimbs = new();
+    private readonly List<Transform> _disabledBossLimbs = new();
 
     [Header("Trigger Points")] 
     [SerializeField] private Transform[] firstLane = new Transform[2];
     [SerializeField] private Transform[] secondLane = new Transform[2];
     [SerializeField] private Transform[] thirdLane = new Transform[2];
     [SerializeField] private GameObject triggerIndicator;
-    private readonly List<Transform[]> _lanePoints = new List<Transform[]>();
+    private readonly List<Transform[]> _lanePoints = new();
     
     [Header("Obstacles")] 
     [SerializeField] private GameObject obstaclePrefab;
@@ -51,7 +50,6 @@ public class BossLevelManager : MonoBehaviour
             foreach (Transform child in bossGameObject.transform)
             {
                 _bossLimbs.Add(child);
-                limbsLeft++;
             }
         }
 
