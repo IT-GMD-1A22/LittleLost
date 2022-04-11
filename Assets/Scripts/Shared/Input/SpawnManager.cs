@@ -59,4 +59,9 @@ public class SpawnManager : MonoBehaviour
             SpawnPlayer();
         }
     }
+
+    public Transform GetCurrentSpawnPoint()
+    {
+        return spawnPoint;
+    }
 }

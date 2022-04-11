@@ -1,9 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/*
+ * Spawns prefabs randomly between two points.
+ * Allows spawned object to selfdestruct after instantiate.
+ * JH
+ */
 public class MarbleSpawner : MonoBehaviour
 {
     [SerializeField] private bool isEnabled;

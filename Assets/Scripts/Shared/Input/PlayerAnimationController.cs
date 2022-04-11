@@ -1,9 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/*
+ * Controls player animations
+ *
+ * JH
+ */
 public class PlayerAnimationController : MonoBehaviour
 {
     private bool _hasAnimator;

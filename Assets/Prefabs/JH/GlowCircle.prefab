@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3006236136664598327}
   - component: {fileID: 4968480737810652098}
   - component: {fileID: 7754235246185275789}
+  - component: {fileID: 6503672040976570622}
   m_Layer: 2
   m_Name: GlowCircle
   m_TagString: Untagged
@@ -11685,6 +11686,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50c7cd95d3aa0ff459a187f76ec8000a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6503672040976570622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006236136664598321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045a4e95d22c1a546a434921cc87a4f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggerSound: {fileID: 8300000, guid: 0405e52a5cdfe5447b996db7ae12b244, type: 3}

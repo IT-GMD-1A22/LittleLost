@@ -1,12 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Script that finds current player and
+ * disables / enables movement.
+ *
+ * Can be triggered by LevelTriggerManager.
+ *
+ * JH
+ */
 public class DisablePlayerMovement : MonoBehaviour
 {
     private SpawnManager _spawnManager;
-
 
     private void Awake()
     {
@@ -18,6 +22,7 @@ public class DisablePlayerMovement : MonoBehaviour
     {
         var controller = _spawnManager.currentPlayer.GetComponent<PlayerController>();
         controller.disablePlayerInput = true;
+
     }
 
 
