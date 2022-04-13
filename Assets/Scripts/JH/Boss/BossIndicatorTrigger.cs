@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BossGlowCircleTrigger : MonoBehaviour
+/*
+ * Tells boss manager indicator has been activated.
+ * JH
+ */
+public class BossIndicatorTrigger : MonoBehaviour
 {
     private BossLevelManager _bossLevelManager;
-    
 
     private void Awake()
     {
@@ -15,6 +15,9 @@ public class BossGlowCircleTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            _bossLevelManager.IndicatorTriggered();
+        }
     }
 }

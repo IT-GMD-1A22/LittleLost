@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 /*
  * Spawn beacon indicator, turns on and off emission to indicate
@@ -18,6 +14,7 @@ public class SpawnBeaconManager : MonoBehaviour
     [SerializeField] private Renderer[] disableGlowOnTrigger;
 
     [ReadOnly, SerializeField] private bool spawnActivated;
+    [SerializeField] private Transform _spawnPoint;
     private SpawnManager _spawnManager;
 
     private void Awake()
@@ -48,8 +45,8 @@ public class SpawnBeaconManager : MonoBehaviour
         if (!spawnActivated)
         {
             spawnActivated = true;
-            _spawnManager.SetNewSpawnPoint(transform.parent);
-
+            Transform spawnPoint = _spawnPoint ? _spawnPoint : transform;
+            _spawnManager.SetNewSpawnPoint(spawnPoint);
 
             foreach (var glowElement in enableGlowOnTrigger)
             {

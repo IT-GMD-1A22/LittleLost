@@ -14,6 +14,7 @@ using Random = UnityEngine.Random;
 
 public class MoveToLocation : MonoBehaviour
 {
+    [SerializeField] private UpdateUsage selectedUpdateMethod = UpdateUsage.UPDATE;
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private Vector3 destinationFromCurrent;
     [SerializeField] private bool returnToStart = true;
@@ -41,7 +42,28 @@ public class MoveToLocation : MonoBehaviour
 
     }
 
+    // late update so movements can be "catched" by unity before actual movement is being done.
+    private void LateUpdate()
+    {
+        if (selectedUpdateMethod == UpdateUsage.LATEUPDATE)
+            updateMovement();
+    }
+
+    // fixed update when physics are involved
     private void FixedUpdate()
+    {
+        if (selectedUpdateMethod == UpdateUsage.FIXEDUPDATE)
+            updateMovement();
+    }
+
+    // ordinary update
+    private void Update()
+    {
+        if (selectedUpdateMethod == UpdateUsage.UPDATE)
+            updateMovement();
+    }
+
+    private void updateMovement()
     {
         // delay start movement.
         if (randomStart && startDelay > 0f)
@@ -49,13 +71,13 @@ public class MoveToLocation : MonoBehaviour
             startDelay -= Time.deltaTime;
             return;
         }
-        
+
         // move to target
         if (transform.position != _currentDestination)
         {
-            transform.position = Vector3.MoveTowards(transform.position,  _currentDestination, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _currentDestination, moveSpeed * Time.deltaTime);
         }
-        
+
         // delay check and return
         if (transform.position == _currentDestination && returnToStart)
         {
@@ -65,20 +87,30 @@ public class MoveToLocation : MonoBehaviour
             }
             else
             {
-                _currentDestination = transform.position == _originalPosition ? _originalPosition + destinationFromCurrent : _originalPosition;
+                _currentDestination = transform.position == _originalPosition
+                    ? _originalPosition + destinationFromCurrent
+                    : _originalPosition;
                 _waitTimer = delayAtDestinationRandom ? Random.Range(0f, delayAtDestination) : delayAtDestination;
             }
-            
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        other.gameObject.transform.parent = transform;
+        if (other.CompareTag("Player"))
+            other.gameObject.transform.parent = transform;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        other.gameObject.transform.parent = null;
+        if (other.CompareTag("Player"))
+            other.gameObject.transform.parent = null;
+    }
+    
+    private enum UpdateUsage
+    {
+        UPDATE,
+        FIXEDUPDATE,
+        LATEUPDATE
     }
 }

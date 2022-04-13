@@ -1,18 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+ * Detects key used in the tutorial. Triggers external complete event
+ * from LevelTriggerManager.
+ *
+ * JH
+ */
 public class TutorialDetectKey : MonoBehaviour
 {
     private LevelTriggerManager _trigger;
     private PlayerInputActionAsset _input;
     [SerializeField] private bool detectJumpSprint;
-    [SerializeField] private bool detectLaneChange;
 
     [SerializeField] private bool hasJumped;
     [SerializeField] private bool hasSprinted;
-    [SerializeField] private bool hasZMoved;
 
     private void OnEnable()
     {
@@ -20,8 +22,7 @@ public class TutorialDetectKey : MonoBehaviour
         _trigger = GetComponent<LevelTriggerManager>();
     }
 
-
-    private void Update()
+    private void LateUpdate()
     {
         if (detectJumpSprint)
         {
@@ -39,14 +40,6 @@ public class TutorialDetectKey : MonoBehaviour
                 detectJumpSprint = false;
             }
         }
-        else if (detectLaneChange)
-        {
-            if (!hasZMoved && _input.move.y != 0f)
-            {
-                hasZMoved = true;
-                detectLaneChange = false;
-                _trigger.CompleteEvent();
-            }
-        }
     }
 }
+

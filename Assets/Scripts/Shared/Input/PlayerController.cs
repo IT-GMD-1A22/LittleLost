@@ -268,6 +268,13 @@ public class PlayerController : MonoBehaviour
         externalForce += direction.normalized * force / 3f; //3f=mass fictives
     }
 
+    public void TeleportPlayerToVector(Vector3 location)
+    {
+        _controller.enabled = false;
+        transform.position = location;
+        _controller.enabled = true;
+    }
+    
     public Vector3 GetVelocity()
     {
         if (_controller == null)

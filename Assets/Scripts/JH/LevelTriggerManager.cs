@@ -7,6 +7,7 @@ using UnityEngine.Events;
 /*
  * When specified trigger event is fired, plays audio and runs through
  * enable, disable and destroy of added gameobjects.
+ * Unity events has been added to give extra functionality.
  *
  * JH
  */
@@ -27,11 +28,8 @@ public class LevelTriggerManager : MonoBehaviour
 
 
     [Header("Settings")]
-    // TODO: Maybe disablemovementonaudio can be its own script looking for when audio is being played on the audio manager
-    // then it would work outside of trigger script also.
-    // [SerializeField] private bool disableMovementOnAudio;
     [SerializeField]
-    private bool handleCompleteEventExternally = false;
+    private bool handleCompleteEventExternally;
 
     [SerializeField] private float delayBeforeRunningEvent = 0.0f;
     [SerializeField] private bool waitForAudioFinish;
@@ -46,13 +44,21 @@ public class LevelTriggerManager : MonoBehaviour
 
     private void Play(AudioClip[] clips)
     {
-        _levelAudioPlayer.AddClipToQueue(clips, interruptPreviousAudioBeforePlaying);
+        if (interruptPreviousAudioBeforePlaying)
+        {
+            _levelAudioPlayer.StopCurrentlyPlayingAndClearQueue();
+        }
+
+        _levelAudioPlayer.AddClipToQueue(clips);
     }
 
 
     private IEnumerator RunEvent()
     {
-        yield return new WaitForSeconds(delayBeforeRunningEvent);
+        if (delayBeforeRunningEvent > 0)
+        {
+            yield return new WaitForSeconds(delayBeforeRunningEvent);
+        }
         Play(onTriggerEventAudioClips.ToArray());
 
         if (waitForAudioFinish)
