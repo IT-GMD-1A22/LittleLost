@@ -8,6 +8,8 @@ TagManager:
   - Boss
   - Marble
   - Door
+  - Morgue
+  - Morgue Door
   layers:
   - Default
   - TransparentFX

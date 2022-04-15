@@ -5,25 +5,24 @@ using UnityEngine;
 public class Teleport : MonoBehaviour
 {
     [SerializeField] private string onColliderTag = "Untagged";
-    [SerializeField] private Vector3 destination;
+    [SerializeField] private Transform destination;
 
     [SerializeField] private bool playAudio = false;
     [SerializeField] private LevelAudioPlayer audioManager;
     [SerializeField] private string audioTag;
+
+    private CharacterController _controller;
     
     void OnTriggerEnter(Collider other)
     {
-
         if (other.CompareTag(onColliderTag)) {
-            if (playAudio) 
-                Play();
-            other.transform.position = destination;
-        }
-    }
-
-    private void Play() {
-        if (audioManager) {
-            audioManager.PlayClipWithTag(audioTag);
+            _controller = other.GetComponent<CharacterController>();
+            _controller.enabled = false;
+            other.transform.position = destination.position;
+            _controller.enabled = true;
+            if (playAudio && audioManager) 
+                audioManager.PlayClipWithTag(audioTag);
+            gameObject.SetActive(false);
         }
     }
 }
