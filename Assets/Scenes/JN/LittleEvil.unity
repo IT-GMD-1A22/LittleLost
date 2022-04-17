@@ -3466,6 +3466,7 @@ MonoBehaviour:
   enableGlowOnTrigger: []
   disableGlowOnTrigger: []
   spawnActivated: 0
+  _spawnPoint: {fileID: 0}
 --- !u!114 &325203913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19227,6 +19228,7 @@ MonoBehaviour:
   enableGlowOnTrigger: []
   disableGlowOnTrigger: []
   spawnActivated: 0
+  _spawnPoint: {fileID: 0}
 --- !u!114 &620851420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20463,6 +20465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b44c25652812f4e9b7881bae3c682d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedUpdateMethod: 0
   moveSpeed: 5
   destinationFromCurrent: {x: 30.5, y: 0, z: 0}
   returnToStart: 1
@@ -37590,7 +37593,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Idea: Jesper Hestkj\xE6r\n\n\nDevelopers\n\nLittle Tutorial: Jesper Hestkj\xE6r\nLittle
-    Kitchen: Anders S\xF8nderBy\nLittle Livingroom: Niklas Jensen\nLittle Evil: Jacob
+    Kitchen: Anders S\xF8nderby\nLittle Livingroom: Niklas Jensen\nLittle Evil: Jacob
     Norsted\n\nCharacter: Jesper Hestkj\xE6r\n\nAudio: 15.ai\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -39977,7 +39980,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0951673, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
