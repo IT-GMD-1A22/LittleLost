@@ -5,16 +5,12 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] private Transform destination;
-    // [SerializeField] private float delayPortal = 1f;
+    [SerializeField] private Vector3 destination;
+    private PlayerController _playerController;
     public GameObject Player;
-
-    // private CharacterController _characterController;
-
-    // Start is called before the first frame update
     void Start()
     {
-        // _characterController = GetComponent<CharacterController>();
+        _playerController.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -27,10 +23,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // _characterController.enabled = false;
-            // yield return new WaitForSeconds(delayPortal);
-            Player.transform.position = destination.transform.position;
-            // _characterController.enabled = true;
+            
         }
     }
 }
