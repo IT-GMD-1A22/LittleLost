@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2343735437515529905}
   m_Layer: 13
   m_Name: eye
-  m_TagString: Untagged
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

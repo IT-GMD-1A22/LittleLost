@@ -10,6 +10,7 @@ TagManager:
   - Door
   - Morgue
   - Morgue Door
+  - Eye
   layers:
   - Default
   - TransparentFX
