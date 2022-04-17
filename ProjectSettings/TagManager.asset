@@ -7,6 +7,8 @@ TagManager:
   - AllowLaneChange
   - Boss
   - Marble
+  - Ladder
+  - LadderTop
   layers:
   - Default
   - TransparentFX
