@@ -1,7 +1,12 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
+/*
+ * Script that "onTrigger" knocks back the character
+ * with a force.
+ *
+ * JH
+ */
 public class KnockBack : MonoBehaviour
 {
     [SerializeField] private float waitForSeconds = 1f;

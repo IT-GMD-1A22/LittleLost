@@ -566,8 +566,8 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   analogMovement: 0
-  takeZMovement: 0
-  cursorLocked: 0
+  takeZMovement: 1
+  cursorLocked: 1
   cursorInputForLook: 0
 --- !u!95 &2139771304583302093
 Animator:
