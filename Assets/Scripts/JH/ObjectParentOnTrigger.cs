@@ -1,14 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Sets player to parent or unparent of object when triggerec
+ *
+ * JH
+ */
 public class ObjectParentOnTrigger : MonoBehaviour
 {
     
     private void OnTriggerStay(Collider other)
     {
-        
         if (other.CompareTag("Player"))
             other.transform.parent = transform.parent;
     }

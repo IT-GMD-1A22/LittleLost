@@ -1,8 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
+/*
+ * Set virtual camera lookat and follow to player
+ *
+ * JH
+ */
 public class SetCameraLookAt : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera vcam;

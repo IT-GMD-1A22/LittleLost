@@ -7,8 +7,10 @@ TagManager:
   - AllowLaneChange
   - Boss
   - Marble
-  - Ladder
-  - LadderTop
+  - Door
+  - Morgue
+  - Morgue Door
+  - Eye
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - 
   - 
   - Post-Processing
-  - 
+  - cam
   - 
   - marble
   - 
