@@ -89,6 +89,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        /* *** Modified by NK ***
+         * Using the if statement to check whether the game is paused.
+         *      True = breaks out of the event, such the player does not have any functionality.
+         *      False = Normal player behaviour.
+         */
+        if (PauseMenuManager.isPaused) return;
         PlayerMovementCheck();
         JumpAndGravity();
         GroundedCheck();
