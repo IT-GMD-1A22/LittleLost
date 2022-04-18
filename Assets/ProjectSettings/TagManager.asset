@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - AllowLaneChange
-  - Boss
-  - Marble
-  - Pickupable
-  - Cooktop
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -17,20 +12,20 @@ TagManager:
   - Water
   - UI
   - 
-  - PlayerImpenetrable
-  - 
-  - Player
   - 
   - 
   - 
-  - pushable
   - 
   - 
   - 
-  - Post-Processing
   - 
   - 
-  - marble
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
