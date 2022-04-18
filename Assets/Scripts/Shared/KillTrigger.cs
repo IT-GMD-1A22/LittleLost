@@ -50,7 +50,7 @@ public class KillTrigger : MonoBehaviour
         controller.disablePlayerInput = true;
         
         if (_animator && !string.IsNullOrEmpty(localAnimatorTriggerName)) _animator.SetBool(localAnimatorTriggerName, true);
-        _audio.PlayClipWithTagInterruptFirst(audioTagToPlay);
+        if (_audio && !audioTagToPlay.Equals("")) _audio.PlayClipWithTagInterruptFirst(audioTagToPlay);
 
         if (triggerPlayerAnimation)
         {

@@ -9,6 +9,10 @@ TagManager:
   - Marble
   - Pickupable
   - Cooktop
+  - Door
+  - Morgue
+  - Morgue Door
+  - Eye
   layers:
   - Default
   - TransparentFX
@@ -28,7 +32,7 @@ TagManager:
   - 
   - 
   - Post-Processing
-  - 
+  - cam
   - 
   - marble
   - 
