@@ -14,7 +14,6 @@ public class PlayerInputActionAsset : MonoBehaviour
     public Vector2 move;
     public bool jump;
     public bool sprint;
-    public bool interact;
     [Header("Movement Settings")] public bool analogMovement;
     public bool takeZMovement = true;
 #if !UNITY_IOS || !UNITY_ANDROID
@@ -38,11 +37,6 @@ public class PlayerInputActionAsset : MonoBehaviour
 		{
             SprintInput(value.isPressed);
 		}
-
-        public void OnInteract(InputValue value)
-        {
-            InteractInput(value.isPressed);
-        }
 #endif
 
 
@@ -65,11 +59,6 @@ public class PlayerInputActionAsset : MonoBehaviour
     public void SprintInput(bool newSprintState)
     {
         sprint = newSprintState;
-    }
-
-    public void InteractInput(bool newInteractState)
-    {
-        interact = newInteractState;
     }
 
 #if !UNITY_IOS || !UNITY_ANDROID
