@@ -142,6 +142,7 @@ public class ComputerMenu : MonoBehaviour
     private IEnumerator ToggleLight() {
         _f2Pressed = true;
         _lightOn = !_lightOn;
+        EventManager.TriggerEvent("PlayAudioSwitch");
         if (_lightOn)
             EventManager.TriggerEvent("LightOn");
         else 
