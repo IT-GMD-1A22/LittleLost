@@ -1,16 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-// [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(AudioSource))]
 public class NarratorSoundManager : MonoBehaviour
 {
+    [SerializeField] List<AudioClip> audioClips;
+    public static NarratorSoundManager Instance;
     private AudioSource _audioSource;
 
-    public AudioClip clip_1;
-
-    public static NarratorSoundManager Instance;
 
     private void Awake()
     {
@@ -19,21 +19,27 @@ public class NarratorSoundManager : MonoBehaviour
 
     private void Start()
     {
-        // _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySoundClip(int ClipID)
+    public void PlaySoundClip(int clip)
     {
         _audioSource.Stop();
+        _audioSource.PlayOneShot(audioClips.ElementAt(clip));
 
-        switch (ClipID)
-        {
-            case 1:
-                _audioSource.PlayOneShot(clip_1);
-                break;
-            default:
-                break;
-        }
+        // switch (clip)
+        // {
+        //     case 1:
+        //         _audioSource.PlayOneShot(audioClips.ElementAt(clip));
+        //         break;
+        //     case 2:
+        //         _audioSource.PlayOneShot(audioClips.ElementAt(clip));
+        //         break;
+        //     case 3:
+        //         _audioSource.PlayOneShot(audioClips.ElementAt(clip));
+        //         break;
+        //     default:
+        //         break;
+        // }
     }
 }
