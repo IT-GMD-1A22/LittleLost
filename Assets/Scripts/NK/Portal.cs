@@ -23,7 +23,9 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            
+            _playerController.enabled = false;
+            transform.position = destination;
+            _playerController.enabled = true;
         }
     }
 }
