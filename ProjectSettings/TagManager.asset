@@ -11,6 +11,16 @@ TagManager:
   - Morgue
   - Morgue Door
   - Eye
+  - PlayButton
+  - LevelsButton
+  - QuitButton
+  - TutorialButton
+  - KitchenButton
+  - LivingroomButton
+  - EvilButtton
+  - BackButton
+  - Background
+  - Screen
   layers:
   - Default
   - TransparentFX

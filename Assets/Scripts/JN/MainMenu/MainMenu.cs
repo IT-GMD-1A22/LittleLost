@@ -1,57 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
-    // [SerializeField] private Animator animator;
-    // private readonly int _animIdLevels = Animator.StringToHash("ShowLevels");
-
-    [SerializeField] private GameObject mainMenu;
-    [SerializeField] private GameObject levelsMenu;
-
+    [Header("Levels Menu Items")]
+    [SerializeField] private GameObject tutorialButton;
+    [SerializeField] private GameObject kitchenButton;
+    [SerializeField] private GameObject livingroomButton;
+    [SerializeField] private GameObject evilButton;
+    [SerializeField] private GameObject backButton;
+    
+    [Header("Animators")]
+    [SerializeField] private Animator mainMenuAnimator;
+    [SerializeField] private Animator levelsMenuAnimator;
+    [SerializeField] private static string animatorBoolName = "Show";
+    
+    private readonly int _animId = Animator.StringToHash(animatorBoolName);
+    private bool _firstLevelsView = true;
+    
     void Start()
     {
-        levelsMenu.SetActive(false);
-        mainMenu.SetActive(true);
+        ShowMainButtons(true);
     }
-    public void PlayButton()
-    {
-        TutorialButton();
-    }
-    public void LevelButton()
-    {
-        ToggleMenu();
-    }
-    public void QuitButton()
+
+    public void Quit()
     {
         Application.Quit();
     }
-    public void TutorialButton()
+
+    public void LaunchTutorial()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("LittleTutorial");
     }
-    public void KitchenButton()
+
+    public void LaunchKitchen()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("LittleKitchen");
     }
-    public void LivingRoomButton()
+
+    public void LaunchLivingRoom()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("LittleLivingroom");
     }
-    public void EvilButton()
+
+    public void LaunchEvil()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("LittleEvil");
     }
-    public void BackButton()
+
+    public void Back()
     {
-        ToggleMenu();
+        ShowLevelsButtons(false);
+        ShowMainButtons(true);
     }
 
-    public void ToggleMenu() 
+    public void Levels()
     {
-        levelsMenu.SetActive(!levelsMenu.activeSelf);
-        mainMenu.SetActive(!mainMenu.activeSelf);
+        if (_firstLevelsView) 
+        {
+            SetLevelButtonsActive(true);
+            _firstLevelsView = false;
+        }
+        ShowMainButtons(false);
+        ShowLevelsButtons(true);
+    }
+
+    private void ShowMainButtons(bool state)
+    {
+        if (mainMenuAnimator)
+            mainMenuAnimator.SetBool(_animId, state);
+    }
+    
+    private void ShowLevelsButtons(bool state)
+    {
+        if (levelsMenuAnimator)
+            levelsMenuAnimator.SetBool(_animId, state);
+    }
+
+    private void SetLevelButtonsActive(bool state)
+    {
+        if (tutorialButton && kitchenButton && livingroomButton && evilButton && backButton)
+        {
+            tutorialButton.SetActive(state);
+            kitchenButton.SetActive(state);
+            livingroomButton.SetActive(state);
+            evilButton.SetActive(state);
+            backButton.SetActive(state);
+        }
     }
 }
