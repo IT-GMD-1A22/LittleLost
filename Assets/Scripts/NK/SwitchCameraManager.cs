@@ -14,9 +14,9 @@ public class SwitchCameraManager : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     [SerializeField] private CinemachineVirtualCamera tvCamera;
-    
-    
+
     private CameraSwitchAction _cameraSwitchAction;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -41,6 +41,7 @@ public class SwitchCameraManager : MonoBehaviour
     private void Start()
     {
         _cameraSwitchAction.Camera.SwitchCamera.performed += _ => DetermineCamera();
+        _audioSource = GetComponent<AudioSource>();
         tvCamera.gameObject.SetActive(false);
     }
 
@@ -48,10 +49,12 @@ public class SwitchCameraManager : MonoBehaviour
     {
         if (CameraSwitchHelper.LiveCamera(mainCamera))
         {
+            StartCoroutine(SoundVolumeFade(0.6f, 2f));
             CameraSwitchHelper.SwitchCamera(tvCamera);
         } 
         else if (CameraSwitchHelper.LiveCamera(tvCamera))
         {
+            StartCoroutine(SoundVolumeFade(0f, 2f));
             CameraSwitchHelper.SwitchCamera(mainCamera);
         }
     }
@@ -62,5 +65,18 @@ public class SwitchCameraManager : MonoBehaviour
         {
             tvCamera.gameObject.SetActive(true);
         }
+    }
+    
+    private IEnumerator SoundVolumeFade(float endingValue, float fadeDuration)
+    {
+        float time = 0;
+        float startingVolume = _audioSource.volume;
+        while (time < fadeDuration)
+        {
+            _audioSource.volume = Mathf.Lerp(startingVolume, endingValue, time / fadeDuration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        _audioSource.volume = endingValue;
     }
 }
