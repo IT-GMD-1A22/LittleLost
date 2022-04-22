@@ -3,7 +3,6 @@ using UnityEngine;
 /*
  * Spawn beacon indicator, turns on and off emission to indicate
  * whether the beacon has been activated or not.
- *
  * JH
  */
 public class SpawnBeaconManager : MonoBehaviour
@@ -36,6 +35,7 @@ public class SpawnBeaconManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Beacon activated");
             ActivateBeacon();
         }
     }
