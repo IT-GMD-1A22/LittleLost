@@ -1,37 +1,26 @@
 using System.Collections;
 using UnityEngine;
 
-/*
- * Script that "onTrigger" knocks back the character
- * with a force.
- *
- * JH
- */
-public class KnockBack : MonoBehaviour
+public class KnockBackTrigger : MonoBehaviour, ITrigger
 {
     [SerializeField] private float waitForSeconds = 1f;
     [SerializeField] private float strength = 5f;
     [SerializeField] private Vector3 pushDirection;
-    
+    public bool isCompleted { get; set; }
 
-    private void OnTriggerStay(Collider other)
+    public void Invoke()
     {
-        if (other.CompareTag("Player"))
-        {
-            StartCoroutine(KnockBackCharacter(other));
-        }
+        StartCoroutine(KnockBackPlayer());
     }
 
-
-    private IEnumerator KnockBackCharacter(Collider other)
+    private IEnumerator KnockBackPlayer()
     {
-        var controller = other.GetComponent<PlayerController>();
+        var controller = SpawnManager.Instance.currentPlayer.GetComponent<PlayerController>();
         controller.disablePlayerInput = true;
         controller.AddExternalForce(pushDirection, strength);
         yield return new WaitForSeconds(waitForSeconds);
         controller.disablePlayerInput = false;
+
+        isCompleted = true;
     }
-    
-    
-    
 }
