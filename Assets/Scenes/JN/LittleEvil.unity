@@ -20344,7 +20344,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh107838
+  m_Name: pb_Mesh47456
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20715,7 +20715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b44c25652812f4e9b7881bae3c682d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedUpdateMethod: 0
+  selectedUpdateMethod: 1
   moveSpeed: 5
   destinationFromCurrent: {x: 30.5, y: 0, z: 0}
   returnToStart: 1
@@ -24717,8 +24717,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1266046871}
+  debugSpawnPoint: {fileID: 0}
   Player: {fileID: 2139771304583302095, guid: 2949b6ef0bf7b05439033bde934c8aeb, type: 3}
   Spawn: 1
+  debugSpawn: 0
 --- !u!4 &1257922704
 Transform:
   m_ObjectHideFlags: 0
@@ -28642,7 +28644,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh109692
+  m_Name: pb_Mesh49302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -31629,7 +31631,7 @@ GameObject:
   - component: {fileID: 1920719608}
   - component: {fileID: 1920719610}
   - component: {fileID: 1920719612}
-  - component: {fileID: 1920719611}
+  - component: {fileID: 1920719613}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -31665,18 +31667,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1920719611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920719607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a98009e5dd44604095505990aef4f12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1920719612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31704,6 +31694,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &1920719613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920719607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7756450256381ce4187997ff145c3276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 742968767}
 --- !u!1 &1925990090
 GameObject:
   m_ObjectHideFlags: 0
