@@ -91,11 +91,13 @@ public class ComputerMenu : MonoBehaviour
         switch (cameras[displayCameraIndex].tag) {
             case "Morgue Door":
                 _enablePassword = true;
+                _enableLightSwitch = false;
                 objectControlMenu.GetComponentInChildren<TextMeshProUGUI>().SetText("Open Door: F1");
                 objectControlMenu.SetActive(true);
                 break;
             case "Morgue":
                 _enableLightSwitch = true;
+                _enablePassword = false;
                 objectControlMenu.GetComponentInChildren<TextMeshProUGUI>().SetText("Toggle Light: F2");
                 objectControlMenu.SetActive(true);
                 break;
