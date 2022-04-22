@@ -8,7 +8,7 @@ using UnityEngine.Events;
  *
  * -jh
  */
-[RequireComponent(typeof(LevelITriggerManager))]
+[RequireComponent(typeof(LevelTriggerManager))]
 public class LevelTriggerUnityEvent : MonoBehaviour, ITrigger
 {
     [SerializeField] private float delay;

@@ -6,7 +6,7 @@ using UnityEngine;
 /*
  * Plays audio when invoked by LevelTriggerManager
  */
-[RequireComponent(typeof(LevelITriggerManager))]
+[RequireComponent(typeof(LevelTriggerManager))]
 public class LevelTriggerPlayAudio : MonoBehaviour, ITrigger
 {
     [SerializeField] private float delay;

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(LevelITriggerManager))]
+[RequireComponent(typeof(LevelTriggerManager))]
 public class LevelTriggerDestroySelf : MonoBehaviour, ITrigger
 {
     [SerializeField] private float delay;

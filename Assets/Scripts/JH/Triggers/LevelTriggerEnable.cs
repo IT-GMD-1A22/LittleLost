@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(LevelITriggerManager))]
+[RequireComponent(typeof(LevelTriggerManager))]
 public class LevelTriggerEnable : LevelTriggerBase
 {
     protected override IEnumerator RunEvent()

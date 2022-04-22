@@ -10,7 +10,7 @@ using UnityEngine;
  * to be able to be invoked.
  * JH
  */
-public class LevelITriggerManager : MonoBehaviour
+public class LevelTriggerManager : MonoBehaviour
 {
     [SerializeField] private TriggerEvent _triggerEvent;
     [SerializeField] private string colliderTag = "Player";

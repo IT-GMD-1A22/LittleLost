@@ -4,7 +4,7 @@ using UnityEngine;
 /*
  * 
  */
-[RequireComponent(typeof(LevelITriggerManager))]
+[RequireComponent(typeof(LevelTriggerManager))]
 public class LevelTriggerDestroy : LevelTriggerBase
 {
     protected override IEnumerator RunEvent()
