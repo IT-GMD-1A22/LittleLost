@@ -465,38 +465,6 @@ MonoBehaviour:
   playEventName: WarningLightOn
   pauseEventName: WarningLightOff
   animateOnAwake: 1
---- !u!1 &19483743
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 19483744}
-  m_Layer: 0
-  m_Name: Cap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &19483744
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19483743}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -77.6, y: 230.8, z: 72.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1804736765}
-  m_Father: {fileID: 1834892536}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &20383075
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20383075}
   m_LocalRotation: {x: 0, y: 0.9930305, z: -0.11785805, w: 0}
-  m_LocalPosition: {x: -13.45, y: 1.26, z: 88.87}
+  m_LocalPosition: {x: -13.45, y: 1.3, z: 88.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30062,7 +30030,7 @@ MonoBehaviour:
     playOnce: 0
     file: {fileID: 8300000, guid: c62914fe9a126f84495afae26f3876dc, type: 3}
   - playOnEventName: PlayAudioEyeHitFloor
-    playOnce: 0
+    playOnce: 1
     file: {fileID: 8300000, guid: a1aa1bfb7a7fca948b96a1b7caa52af4, type: 3}
   - playOnEventName: PlayerEscaped
     playOnce: 0
@@ -30332,8 +30300,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1600362444}
-  m_Father: {fileID: 19483744}
-  m_RootOrder: 0
+  m_Father: {fileID: 1834892536}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -30730,7 +30698,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 376472382}
-  - {fileID: 19483744}
+  - {fileID: 1804736765}
   m_Father: {fileID: 1739258105}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37915,10 +37883,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Idea and Character by Jesper Hestkj\xE6r\n\nMain Menu by Jacob Norsted\n\nLittle
-    Tutorial by Jesper Hestkj\xE6r\nLittle Kitchen by Anders S\xF8nderby\nLittle
-    Livingroom by Niklas Jensen\nLittle Evil by  Jacob Norsted\n\nPause Menu by Niklas
-    Jensen\n\nAudio by Dan Vs. - 15.ai\n"
+  m_text: "Idea and Character by Jesper Hestkj\xE6r\n\nLittle Tutorial by Jesper
+    Hestkj\xE6r\nLittle Kitchen by Anders S\xF8nderby\nLittle Livingroom by Niklas
+    Jensen\nLittle Evil by  Jacob Norsted\n\nMain Menu by Jacob Norsted\nPause Menu
+    by Niklas Jensen\n\nAudio by Dan Vs. - 15.ai\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
