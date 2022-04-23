@@ -28,10 +28,6 @@ public class MoveToLocation : MonoBehaviour
     private float _waitTimer;
     private Vector3 _currentDestination;
     private Vector3 _originalPosition;
-    
-
-
-
 
     private void Start()
     {
@@ -66,17 +62,10 @@ public class MoveToLocation : MonoBehaviour
     private void updateMovement()
     {
         // delay start movement.
-        if (randomStart && startDelay > 0f)
-        {
-            startDelay -= Time.deltaTime;
-            return;
-        }
+        if (DelayStart()) return;
 
         // move to target
-        if (transform.position != _currentDestination)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, _currentDestination, moveSpeed * Time.deltaTime);
-        }
+        MoveToTarget();
 
         // delay check and return
         if (transform.position == _currentDestination && returnToStart)
@@ -87,26 +76,39 @@ public class MoveToLocation : MonoBehaviour
             }
             else
             {
-                _currentDestination = transform.position == _originalPosition
-                    ? _originalPosition + destinationFromCurrent
-                    : _originalPosition;
-                _waitTimer = delayAtDestinationRandom ? Random.Range(0f, delayAtDestination) : delayAtDestination;
+                SetNewCurrentDestination();
             }
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void SetNewCurrentDestination()
     {
-        if (other.CompareTag("Player"))
-            other.gameObject.transform.parent = transform;
+        _currentDestination = transform.position == _originalPosition
+            ? _originalPosition + destinationFromCurrent
+            : _originalPosition;
+        _waitTimer = delayAtDestinationRandom ? Random.Range(0f, delayAtDestination) : delayAtDestination;
     }
 
-    private void OnTriggerExit(Collider other)
+    private void MoveToTarget()
     {
-        if (other.CompareTag("Player"))
-            other.gameObject.transform.parent = null;
+        if (transform.position != _currentDestination)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _currentDestination, moveSpeed * Time.deltaTime);
+        }
     }
-    
+
+    private bool DelayStart()
+    {
+        if (randomStart && startDelay > 0f)
+        {
+            startDelay -= Time.deltaTime;
+            return true;
+        }
+
+        return false;
+    }
+
+
     private enum UpdateUsage
     {
         UPDATE,

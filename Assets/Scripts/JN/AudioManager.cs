@@ -14,11 +14,22 @@ using Random = UnityEngine.Random;
 public class AudioManager : MonoBehaviour
 {
     [Serializable]
-    private class Audio
+    private class AudioCollection
+    {
+        public string addRandomToQueueOnEvent;
+        public AudioClip[] clips;
+        public void AddToQueue()
+        {
+            _playQueue.Enqueue(clips[Random.Range(0, clips.Length)]);
+        }
+    }
+    
+    [Serializable]
+    private class AudioFile
     {
         public string playOnEventName;
         public bool playOnce = false;
-        public AudioClip[] clips;
+        public AudioClip file;
         private int _playCount = 0;
 
         public void Play()
@@ -26,19 +37,20 @@ public class AudioManager : MonoBehaviour
             if (playOnce) 
             {
                 if (_playCount == 0)
-                    _playQueue.Enqueue(clips[Random.Range(0, clips.Length)]);
+                _audioSource.PlayOneShot(file);
             }
             else 
             {
-                _playQueue.Enqueue(clips[Random.Range(0, clips.Length)]);
+                _audioSource.PlayOneShot(file);
             }
             _playCount ++;
         }
     }
 
-    [SerializeField] private List<Audio> _audioFiles;
+    [SerializeField] private List<AudioFile> instantAudio;
+    [SerializeField] private List<AudioCollection> queuedAudio;
     
-    private AudioSource _audioSource;
+    private static AudioSource _audioSource;
     private static Queue<AudioClip> _playQueue;
     private bool playing;
     private void Awake()
@@ -49,14 +61,16 @@ public class AudioManager : MonoBehaviour
 
     void OnEnable ()
     {
-        if (_audioFiles.Any())
-            _audioFiles.ForEach(a => EventManager.StartListening (a.playOnEventName, a.Play));
+        if (queuedAudio.Any())
+            queuedAudio.ForEach(a => EventManager.StartListening (a.addRandomToQueueOnEvent, a.AddToQueue));
+            instantAudio.ForEach(a => EventManager.StartListening (a.playOnEventName, a.Play));
     }
 
     void OnDisable ()
     {
-        if (_audioFiles.Any())
-            _audioFiles.ForEach(a => EventManager.StopListening (a.playOnEventName, a.Play));
+        if (queuedAudio.Any())
+            queuedAudio.ForEach(a => EventManager.StopListening (a.addRandomToQueueOnEvent, a.AddToQueue));
+            instantAudio.ForEach(a => EventManager.StopListening (a.playOnEventName, a.Play));
     }
 
 
@@ -85,43 +99,4 @@ public class AudioManager : MonoBehaviour
         }
         _playQueue.Enqueue(clip);
     }
-
-    // public void PlayClipWithTag(string tag)
-    // {
-    //     var clips = _audioFiles.Find(x => x.playOnEventName.Equals(tag));
-    //     _playQueue.Enqueue(clips.clips[Random.Range(0, clips.clips.Length)]);
-    // }
-
-    // public void PlayClipWithTagInterruptFirst(string tag)
-    // {
-    //     _playQueue.Clear();
-    //     _audioSource.Stop();
-    //     PlayClipWithTag(tag);
-    // }
-    
-    // public void AddClipToQueue(AudioClip[] clip, bool interrupt = false)
-    // {
-    //     if (interrupt)
-    //     {
-    //         _playQueue.Clear();
-    //         _audioSource.Stop();
-    //     }
-
-    //     for (int i = 0; i < clip.Length; i++)
-    //     {
-    //         _playQueue.Enqueue(clip[i]);
-    //     }
-       
-    // }
-    
-    // public float GetQueuePlayLength()
-    // {
-    //     float length = 0f;
-    //     foreach (var clip in _playQueue)
-    //     {
-    //         length += clip.length;
-    //     }
-
-    //     return length;
-    // }
 }

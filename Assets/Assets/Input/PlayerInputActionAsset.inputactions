@@ -411,15 +411,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Keys",
-                    "type": "Button",
-                    "id": "556ce9f0-4e57-425e-94ba-91a40da3ae81",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -838,17 +829,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1bf34810-087d-4974-aff6-da507c8e62c6",
-                    "path": "<Keyboard>/o",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Keys",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

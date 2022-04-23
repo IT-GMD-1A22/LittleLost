@@ -16,21 +16,20 @@ public class DisablePlayerMovement : MonoBehaviour
     {
         _spawnManager = FindObjectOfType<SpawnManager>();
     }
-
-
+    
     public void DisableMovement()
     {
-        var controller = _spawnManager.currentPlayer.GetComponent<PlayerController>();
-        controller.disablePlayerInput = true;
+        GetPlayerController().disablePlayerInput = true;
 
     }
-
 
     public void EnableMovement()
     {
-        var controller = _spawnManager.currentPlayer.GetComponent<PlayerController>();
-        controller.disablePlayerInput = false;
+        GetPlayerController().disablePlayerInput = false;
     }
 
-    
+    private PlayerController GetPlayerController()
+    {
+        return _spawnManager.currentPlayer.GetComponent<PlayerController>();
+    }
 }
