@@ -10,9 +10,7 @@ Material:
   m_Name: tile plate
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
-  - _METALLICSPECGLOSSMAP
   - _NORMALMAP
-  - _OCCLUSIONMAP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -49,7 +47,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 9118705415624978417, guid: 16c3c2a48500d4941b3754aa3f933bcd, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 0.97}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

@@ -23,6 +23,7 @@ TagManager:
   - BackButton
   - Background
   - Screen
+  - Knife
   layers:
   - Default
   - TransparentFX
