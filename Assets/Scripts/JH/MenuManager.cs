@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Menu manager for an example menu
+ */
 public class MenuManager : MonoBehaviour
 {
     public void LoadScene(int level)

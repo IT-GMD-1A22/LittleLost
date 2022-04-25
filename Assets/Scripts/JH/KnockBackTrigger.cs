@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
+/*
+ * Knock back the player with force
+ * Acts as a trigger, as such can also be handled by level trigger manager
+ */
 public class KnockBackTrigger : MonoBehaviour, ITrigger
 {
     [SerializeField] private float waitForSeconds = 1f;

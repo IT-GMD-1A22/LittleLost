@@ -1,3 +1,7 @@
+/*
+ * Enum to handle level trigger manager events
+ * 
+ */
 public enum TriggerEvent
 {
     ENABLED,

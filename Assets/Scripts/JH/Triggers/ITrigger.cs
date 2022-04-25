@@ -1,5 +1,7 @@
 
-using System;
+/*
+ * Interface to handle action when a trigger is being triggerd
+ */
 
 public interface ITrigger
 {
