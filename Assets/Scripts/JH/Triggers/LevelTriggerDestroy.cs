@@ -2,9 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 /*
- * 
+ *   Destroy a game object when triggered
  */
-[RequireComponent(typeof(LevelTriggerManager))]
 public class LevelTriggerDestroy : LevelTriggerBase
 {
     protected override IEnumerator RunEvent()

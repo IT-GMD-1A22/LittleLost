@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 /*
- * Sets player to parent or unparent of object when triggerec
+ * Sets player to parent or unparent of object when triggered
  *
  * JH
  */

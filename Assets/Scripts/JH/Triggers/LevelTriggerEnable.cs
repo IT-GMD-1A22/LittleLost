@@ -1,7 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(LevelTriggerManager))]
+/*
+ * Enables game object when triggered
+ */
 public class LevelTriggerEnable : LevelTriggerBase
 {
     protected override IEnumerator RunEvent()

@@ -1,6 +1,9 @@
-using System;
 using System.Collections;
 using UnityEngine;
+
+/*
+ * Destroy game object script is attached to when triggered
+ */
 
 [RequireComponent(typeof(LevelTriggerManager))]
 public class LevelTriggerDestroySelf : MonoBehaviour, ITrigger

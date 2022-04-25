@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/*
+ * Snaps player to position
+ */
 public class Snapper : MonoBehaviour, ISnapper
 {
     private GameObject player;
