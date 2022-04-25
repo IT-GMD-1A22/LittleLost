@@ -89,14 +89,4 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(clip.length);
         playing = false;
     }
-
-    public void AddClipToQueue(AudioClip clip, bool interrupt = false)
-    {
-        if (interrupt)
-        {
-            _playQueue.Clear();
-            _audioSource.Stop();
-        }
-        _playQueue.Enqueue(clip);
-    }
 }
