@@ -19,6 +19,7 @@ public class ItemPickupScript : MonoBehaviour
         if (!gameObject.CompareTag("Pickupable"))
             return;
         LittleKitchenLevelManager.BreadPickedUp = true;
+        LittleKitchenLevelManager.LevelStage = 3;
         _levelAudioPlayer.AddClipToQueue(audioClip);
         Destroy(gameObject);
     }

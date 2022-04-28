@@ -19,6 +19,7 @@ public class ToasterScript : MonoBehaviour
         if (LittleKitchenLevelManager.BreadPickedUp.Equals(false))
         {
             _levelAudioPlayer.AddClipToQueue(audioClip);
+            LittleKitchenLevelManager.LevelStage = 2;
         }
         else
         {
