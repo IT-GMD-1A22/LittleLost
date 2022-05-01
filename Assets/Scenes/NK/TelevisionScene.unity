@@ -1048,7 +1048,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-658038
+  m_Name: pb_Mesh-54746
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6296,7 +6296,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-658208
+  m_Name: pb_Mesh-54914
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7075,7 +7075,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-657882
+  m_Name: pb_Mesh-54590
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7865,7 +7865,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-658252
+  m_Name: pb_Mesh-54958
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8106,7 +8106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderId: 4
   playOnce: 0
-  disablePlayer: 1
+  playMultiple: 1
 --- !u!65 &849562145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8329,7 +8329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderId: 4
   playOnce: 0
-  disablePlayer: 1
+  playMultiple: 1
 --- !u!65 &921088518
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13743,14 +13743,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliderId: 1
   playOnce: 1
-  disablePlayer: 1
+  playMultiple: 0
 --- !u!43 &1008048084
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-657828
+  m_Name: pb_Mesh-54536
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14445,8 +14445,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderId: 5
-  playOnce: 0
-  disablePlayer: 1
+  playOnce: 1
+  playMultiple: 0
 --- !u!65 &1079981945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14537,8 +14537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderId: 6
-  playOnce: 0
-  disablePlayer: 1
+  playOnce: 1
+  playMultiple: 0
 --- !u!65 &1135277015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19673,6 +19673,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 535884076781798225, guid: 5eb9eb011698913448c5fbc7e21a265c, type: 3}
   m_PrefabInstance: {fileID: 1254656896}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1268266399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1268266400}
+  - component: {fileID: 1268266402}
+  - component: {fileID: 1268266401}
+  m_Layer: 0
+  m_Name: TVSoundTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1268266400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268266399}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.9, y: 14.93, z: 6.01}
+  m_LocalScale: {x: 13, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1852194356}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1268266401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268266399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107942c94c4e2af438951350388bfc15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderId: 7
+  playOnce: 1
+  playMultiple: 0
+--- !u!65 &1268266402
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268266399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3, z: 13}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1282163882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20471,8 +20532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderId: 2
-  playOnce: 0
-  disablePlayer: 1
+  playOnce: 1
+  playMultiple: 0
 --- !u!65 &1410591494
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20524,6 +20585,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 91444e0b2cf614e47a7849a392e21cbe, type: 3}
   - {fileID: 8300000, guid: 538ba4779aba85143be2acfde669e198, type: 3}
   - {fileID: 8300000, guid: 55804afab5b787147b39fc3d7a2d772f, type: 3}
+  - {fileID: 8300000, guid: 2c20971375367644ca8ce459c09efa29, type: 3}
 --- !u!4 &1417699072
 Transform:
   m_ObjectHideFlags: 0
@@ -31982,8 +32044,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderId: 3
-  playOnce: 0
-  disablePlayer: 1
+  playOnce: 1
+  playMultiple: 0
 --- !u!65 &1802613256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32342,6 +32404,7 @@ Transform:
   - {fileID: 1338903117}
   - {fileID: 1505721991}
   - {fileID: 979596309}
+  - {fileID: 1268266400}
   m_Father: {fileID: 364473259}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -42973,8 +43036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderId: 0
-  playOnce: 0
-  disablePlayer: 1
+  playOnce: 1
+  playMultiple: 0
 --- !u!4 &543450652539252292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1578750658357485995, guid: fd03d487fadcc514480161a172085f53, type: 3}
@@ -43019,6 +43082,37 @@ BoxCollider:
   m_GameObject: {fileID: 919132149489018284}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3, y: 1.3, z: 1.3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &919132149489018287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149489018284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d833427f69bf92e45ba70eba721be35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 919132149489018285}
+  localAnimatorTriggerName: PokeballTrigger
+  triggerPlayerAnimation: 1
+  waitBeforeSpawn: 4
+  audioTagToPlay: dying
+  runningRoutine: 0
+--- !u!65 &919132149489018288
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149489018284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.3, y: 1.3, z: 1.3}
@@ -43229,8 +43323,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 4137641995600238101}
+  debugSpawnPoint: {fileID: 0}
   Player: {fileID: 2139771304583302095, guid: 2949b6ef0bf7b05439033bde934c8aeb, type: 3}
   Spawn: 1
+  debugSpawn: 0
 --- !u!4 &4137641995864746027
 Transform:
   m_ObjectHideFlags: 0
@@ -43258,32 +43354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30a5d2a50a724c4d95e4aa524984da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerEvent: 1
-  onTriggerEventAudioClips: []
-  shouldEnable: []
-  shouldDisable: []
-  shouldDestroy: []
-  unityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  handleCompleteEventExternally: 0
-  delayBeforeRunningEvent: 0
-  waitForAudioFinish: 0
-  interruptPreviousAudioBeforePlaying: 0
-  destroySelfAfterEvent: 0
-  printToConsoleOnCompletion: 1
 --- !u!4 &4137641997343034990
 Transform:
   m_ObjectHideFlags: 0
