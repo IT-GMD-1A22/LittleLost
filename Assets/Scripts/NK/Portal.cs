@@ -5,14 +5,6 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    [SerializeField] private Vector3 destination;
-    private PlayerController _playerController;
-    public GameObject Player;
-    void Start()
-    {
-        _playerController.GetComponent<PlayerController>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -23,9 +15,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _playerController.enabled = false;
-            transform.position = destination;
-            _playerController.enabled = true;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("LittleEvil");
         }
     }
 }
