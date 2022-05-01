@@ -1,7 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(LevelTriggerManager))]
+/*
+ * Disables game object when triggered
+ */
 public class LevelTriggerDisable : LevelTriggerBase
 {
     protected override IEnumerator RunEvent()

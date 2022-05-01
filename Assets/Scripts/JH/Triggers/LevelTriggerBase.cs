@@ -6,6 +6,7 @@ using UnityEngine;
  * Base class for ITrigger implementations
  * JH
  */
+[RequireComponent(typeof(LevelTriggerManager))]
 public abstract class LevelTriggerBase : MonoBehaviour, ITrigger
 {
     [SerializeField] internal GameObject _object;

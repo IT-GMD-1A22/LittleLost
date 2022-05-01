@@ -180,7 +180,7 @@ public class ComputerMenu : MonoBehaviour
     {
         if (_allowInput)
         {
-            if (Keyboard.current.escapeKey.isPressed) {
+            if (Keyboard.current.f10Key.isPressed) {
                 if (passwordMenu && passwordMenu.activeSelf) {
                     CCTVNavigation.SetActive(true);
                     objectControlMenu.SetActive(false);
