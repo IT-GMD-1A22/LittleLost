@@ -65,4 +65,9 @@ public class PauseMenuManager : MonoBehaviour
         isPaused = false;
         pauseMenu.SetActive(false);
     }
+
+    public void LoadMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
 }
