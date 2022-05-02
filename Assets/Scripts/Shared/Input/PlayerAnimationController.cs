@@ -22,6 +22,7 @@ public class PlayerAnimationController : MonoBehaviour
     private int _animIDMotionSpeed;
     private int _animIDKillTrigger;
     private int _animIDKill;
+    private int _animIDClimbing;
 
 
     private void Start()
@@ -40,6 +41,7 @@ public class PlayerAnimationController : MonoBehaviour
         _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         _animIDKillTrigger = Animator.StringToHash("KillTrigger");
         _animIDKill = Animator.StringToHash("Kill");
+        _animIDClimbing = Animator.StringToHash("Climbing");
     }
 
 
@@ -93,5 +95,13 @@ public class PlayerAnimationController : MonoBehaviour
         }
         _animator.SetInteger(_animIDKill ,killAnim);
         _animator.SetTrigger(_animIDKillTrigger);
+    }
+
+    public void SetClimbAnimation(bool actived)
+    {
+        if (_hasAnimator)
+        {
+            _animator.SetBool(_animIDClimbing, actived);
+        }
     }
 }

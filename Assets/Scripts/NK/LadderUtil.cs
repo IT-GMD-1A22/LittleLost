@@ -16,6 +16,7 @@ public class LadderUtil : MonoBehaviour
     private PlayerController _controller;
     private CharacterController _characterController;
     private PlayerLaneChanger _playerLaneChanger;
+    private PlayerAnimationController _playerAnimationController;
     [SerializeField] public bool _active = false;
     [SerializeField] private float ladderSpeed = 3.2f;
     private PlayerInputActionAsset _playerInput;
@@ -30,18 +31,26 @@ public class LadderUtil : MonoBehaviour
         _controller = GetComponent<PlayerController>();
         _characterController = GetComponent<CharacterController>();
         _playerLaneChanger = GetComponent<PlayerLaneChanger>();
+        _playerAnimationController = GetComponent<PlayerAnimationController>();
         _active = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ladder") || other.CompareTag("LadderTop"))
+        if (other.CompareTag("Ladder"))
         {
-            _playerInput.enabled = false;
+            Debug.Log("Enter trigger");
             _active = true;
             ladder = other.transform;
             _playerInput.takeZMovement = true;
             _playerLaneChanger.enabled = false;
+            _playerAnimationController.SetClimbAnimation(true);
+        }
+
+        if (other.CompareTag("LadderTop"))
+        {
+            Debug.Log("Ladder Top enter");
+            _playerAnimationController.SetClimbAnimation(false);
         }
     }
 
@@ -49,10 +58,11 @@ public class LadderUtil : MonoBehaviour
     {
         if (other.CompareTag("Ladder") || other.CompareTag("LadderTop"))
         {
-            _playerInput.enabled = true;
+            Debug.Log("Exit ladder");
             _active = false;
             _playerInput.takeZMovement = false;
             _playerLaneChanger.enabled = true;
+            _playerAnimationController.SetClimbAnimation(false);
         }
     }
 

@@ -68,6 +68,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        DeactivatePauseMenu();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }
