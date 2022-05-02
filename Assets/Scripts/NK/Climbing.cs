@@ -11,7 +11,7 @@ using UnityEngine.Serialization;
  * - NK
  */
 
-public class LadderUtil : MonoBehaviour
+public class Climbing : MonoBehaviour
 {
     private PlayerController _controller;
     private CharacterController _characterController;
@@ -51,6 +51,10 @@ public class LadderUtil : MonoBehaviour
         {
             Debug.Log("Ladder Top enter");
             _playerAnimationController.SetClimbAnimation(false);
+            
+            // Both methods are set again, in case OnTriggerExit is registered.
+            _playerInput.takeZMovement = true;
+            _playerLaneChanger.enabled = false;
         }
     }
 

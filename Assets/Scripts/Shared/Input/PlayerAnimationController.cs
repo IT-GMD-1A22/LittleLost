@@ -97,11 +97,11 @@ public class PlayerAnimationController : MonoBehaviour
         _animator.SetTrigger(_animIDKillTrigger);
     }
 
-    public void SetClimbAnimation(bool actived)
+    public void SetClimbAnimation(bool activated)
     {
         if (_hasAnimator)
         {
-            _animator.SetBool(_animIDClimbing, actived);
+            _animator.SetBool(_animIDClimbing, activated);
         }
     }
 }
