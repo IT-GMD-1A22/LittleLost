@@ -37,12 +37,12 @@ public class MainMenu : MonoBehaviour
 
     public void LaunchKitchen()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LittleKitchen");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("DinnerScene");
     }
 
     public void LaunchLivingRoom()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("LittleLivingroom");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TelevisionScene");
     }
 
     public void LaunchEvil()

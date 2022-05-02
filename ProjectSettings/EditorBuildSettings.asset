@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JN/LittleEvil.unity
     guid: d9460c0e5518f894a91d36b6bf8db817
+  - enabled: 1
+    path: Assets/Scenes/AS/DinnerScene.unity
+    guid: 7c5b64bf781de9c4ea80c95c5b93185c
+  - enabled: 1
+    path: Assets/Scenes/NK/TelevisionScene.unity
+    guid: 3094d0c108706214e93015b56f49ffc8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 428587fbe7ffbd14e93b5602d41fc6ab, type: 2}
