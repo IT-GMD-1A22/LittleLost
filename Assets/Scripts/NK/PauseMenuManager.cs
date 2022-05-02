@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * Enables and disables the pause menu.
+ * Script that enables and disables the pause menu.
  * Guidance and inspiration from: samyam, YouTube
  * https://www.youtube.com/watch?v=9tsbUoFfAgo
  *
- * NK
+ * - NK
  */
 
 public class PauseMenuManager : MonoBehaviour

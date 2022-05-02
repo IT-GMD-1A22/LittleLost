@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/*
+ * Script that handles and plays the corresponding id of an narrator TTS.
+ * Setup as an Singleton, ensuring the class only exists once and can be utilized in other classes without calling GetComponent<>.
+ * 
+ * - NK
+ */
+
 [RequireComponent(typeof(AudioSource))]
 public class NarratorSoundManager : MonoBehaviour
 {
@@ -26,20 +33,5 @@ public class NarratorSoundManager : MonoBehaviour
     {
         _audioSource.Stop();
         _audioSource.PlayOneShot(audioClips.ElementAt(clip));
-
-        // switch (clip)
-        // {
-        //     case 1:
-        //         _audioSource.PlayOneShot(audioClips.ElementAt(clip));
-        //         break;
-        //     case 2:
-        //         _audioSource.PlayOneShot(audioClips.ElementAt(clip));
-        //         break;
-        //     case 3:
-        //         _audioSource.PlayOneShot(audioClips.ElementAt(clip));
-        //         break;
-        //     default:
-        //         break;
-        // }
     }
 }

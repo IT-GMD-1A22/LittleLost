@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+ * Script to load the next scene when the player find the 'orb'.
+ * - NK
+ */
 public class Portal : MonoBehaviour
 {
     // Update is called once per frame

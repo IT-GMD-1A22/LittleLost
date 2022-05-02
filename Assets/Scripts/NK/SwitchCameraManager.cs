@@ -7,7 +7,7 @@ using Cinemachine;
 /*
  *  Utilizes the keyboard key 'P' for changing the camera.
  *
- * NK
+ * - NK
  */
 
 public class SwitchCameraManager : MonoBehaviour
@@ -67,6 +67,12 @@ public class SwitchCameraManager : MonoBehaviour
         }
     }
     
+    /*
+     * Modified from the documentation to handle an fade in / fade out of the audio.
+     * https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html
+     *
+     * - NK
+     */
     private IEnumerator SoundVolumeFade(float endingValue, float fadeDuration)
     {
         float time = 0;

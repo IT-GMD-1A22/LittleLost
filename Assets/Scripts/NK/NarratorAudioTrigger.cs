@@ -5,6 +5,10 @@ using System.ServiceModel.Security;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+/*
+ * Script that triggers the narrator TTS clip when enterted.
+ * - NK
+ */
 public class NarratorAudioTrigger : MonoBehaviour
 {
     [SerializeField] private int colliderId = 0;
@@ -17,7 +21,6 @@ public class NarratorAudioTrigger : MonoBehaviour
         {
             if (playOnce)
             {
-                print("Play once");
                 NarratorSoundManager.Instance.PlaySoundClip(colliderId);
                 playOnce = false;
             }
@@ -25,7 +28,6 @@ public class NarratorAudioTrigger : MonoBehaviour
             if (playMultiple)
             {
                 NarratorSoundManager.Instance.PlaySoundClip(colliderId);
-                print("Play mult times");
             }
         }
     }

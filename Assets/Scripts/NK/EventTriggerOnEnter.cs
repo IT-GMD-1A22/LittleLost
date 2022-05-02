@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+/*
+ * Event trigger to handle animations (Could also have been used for other things, but is only used for animation)
+ * - NK
+ */
 public class EventTriggerOnEnter : MonoBehaviour
 {
     [Header("Custom Event Trigger")]

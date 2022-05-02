@@ -8,10 +8,10 @@ using Cinemachine;
  * Guidance from: Dan Pos, YouTube
  * https://www.youtube.com/watch?v=ZVrfNivw7PY
  *
- * NK
+ * - NK
  */
 
-// Added static since it will not be add to an object, hence removal of 'MonoBehaviour'
+// Added static since it will not be added to an object, hence removal of 'MonoBehaviour'
 public static class CameraSwitchHelper
 {
     private static List<CinemachineVirtualCamera> _cameras = new List<CinemachineVirtualCamera>();
