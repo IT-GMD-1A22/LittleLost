@@ -7,6 +7,8 @@ TagManager:
   - AllowLaneChange
   - Boss
   - Marble
+  - Pickupable
+  - Cooktop
   - Door
   - Morgue
   - Morgue Door
@@ -21,6 +23,9 @@ TagManager:
   - BackButton
   - Background
   - Screen
+  - Knife
+  - Stage_1_Arrow
+  - Stage_2_Arrow
   layers:
   - Default
   - TransparentFX
