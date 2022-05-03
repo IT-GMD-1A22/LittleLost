@@ -26,6 +26,8 @@ TagManager:
   - Knife
   - Stage_1_Arrow
   - Stage_2_Arrow
+  - Ladder
+  - LadderTop
   layers:
   - Default
   - TransparentFX
