@@ -14,6 +14,7 @@ using UnityEngine;
 public class PauseMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    private PlayerInputActionAsset _playerInputActionAsset;
     
     private PauseAction _pauseAction;
     
@@ -38,6 +39,7 @@ public class PauseMenuManager : MonoBehaviour
     private void Start()
     {
         _pauseAction.Pause.PauseGame.performed += _ => DeterminePause();
+        _playerInputActionAsset = GetComponent<PlayerInputActionAsset>();
     }
 
     private void DeterminePause()
@@ -57,6 +59,7 @@ public class PauseMenuManager : MonoBehaviour
         AudioListener.pause = true;
         isPaused = true;
         pauseMenu.SetActive(true);
+        _playerInputActionAsset.cursorLocked = false;
     }
 
     public void DeactivatePauseMenu()
@@ -64,6 +67,7 @@ public class PauseMenuManager : MonoBehaviour
         AudioListener.pause = false;
         isPaused = false;
         pauseMenu.SetActive(false);
+        _playerInputActionAsset.cursorLocked = true;
     }
 
     public void LoadMainMenu()
