@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 /*
  * Created with guidance and inspiration from JH's 'PlayerController'.
@@ -69,10 +65,8 @@ public class Climbing : MonoBehaviour
             _playerAnimationController.SetClimbAnimation(false);
         }
     }
-
-
-    // Update is called once per frame
-    void LateUpdate()
+    
+    void Update()
     {
         if (_active) {
             _playerLaneChanger.enabled = false;

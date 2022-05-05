@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 /*
  * Script that handles the movement of the light course.
@@ -20,7 +15,6 @@ public class MovementCourse : MonoBehaviour
         _currentDestination = moveToPosition.position;
     }
     
-    // TODO Concider if coroutines would be better fitted...
     private void FixedUpdate()
     {
         if (transform.position == moveFromPosition.position)

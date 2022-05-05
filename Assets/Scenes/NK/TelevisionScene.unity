@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: f96fd2d48eab5e44fa550834dc345971, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -314,7 +314,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7fe940470693b964885d826746bc14e7, type: 2}
     - target: {fileID: 919132149155446097, guid: 36835aecd1127c84284c646738e42d90, type: 3}
       propertyPath: m_Name
-      value: uploads_files_940920_SONY+Xperia+XA1
+      value: Phone
       objectReference: {fileID: 0}
     - target: {fileID: 1378090415999995971, guid: 36835aecd1127c84284c646738e42d90, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7062,7 +7062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8f3dadd7e71a6f742831802032b88a5a, type: 3}
       propertyPath: m_Name
-      value: James_Dieter_Meta_9_3
+      value: JamesDieterLight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f3dadd7e71a6f742831802032b88a5a, type: 3}
@@ -8189,7 +8189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f682c54442da93848b723046855f1207, type: 3}
       propertyPath: m_Name
-      value: uploads_files_1999303_headphones
+      value: Headphones
       objectReference: {fileID: 0}
     - target: {fileID: 8029429812774805185, guid: f682c54442da93848b723046855f1207, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -45562,7 +45562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c6969e3bc325b4e82af4ada805deef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {fileID: 4137641995600238101}
+  spawnPoint: {fileID: 4137641995662297036}
   debugSpawnPoint: {fileID: 0}
   Player: {fileID: 2139771304583302095, guid: 2949b6ef0bf7b05439033bde934c8aeb, type: 3}
   Spawn: 1

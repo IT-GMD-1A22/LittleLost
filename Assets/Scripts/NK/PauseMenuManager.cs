@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -53,6 +50,10 @@ public class PauseMenuManager : MonoBehaviour
             ActivatePauseMenu();
         }
     }
+    
+    /*
+     * This section below is a modified version from the inspiration to accommodate the use case in this project.
+     */
 
     public void ActivatePauseMenu()
     {
@@ -72,7 +73,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        DeactivatePauseMenu();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        DeactivatePauseMenu();
     }
 }

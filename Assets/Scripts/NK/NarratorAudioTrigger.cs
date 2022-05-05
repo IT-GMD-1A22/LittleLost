@@ -1,12 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ServiceModel.Security;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 /*
- * Script that triggers the narrator TTS clip when enterted.
+ * Script that triggers the narrator TTS clip when entered.
  * - NK
  */
 public class NarratorAudioTrigger : MonoBehaviour
@@ -21,6 +16,7 @@ public class NarratorAudioTrigger : MonoBehaviour
         {
             if (playOnce)
             {
+                // Utilizes the singleton instance of the Narrator Sound Manager
                 NarratorSoundManager.Instance.PlaySoundClip(colliderId);
                 playOnce = false;
             }
