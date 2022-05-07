@@ -217,7 +217,7 @@ public class ComputerMenu : MonoBehaviour
                     StartCoroutine(ToggleLight());
             }
             else if (Keyboard.current.backspaceKey.isPressed) {
-                if (passwordMenu && passwordMenu.activeSelf) {
+                if (passwordMenu && passwordMenu.activeSelf && _userInput.Length > 0) {
                     _userInput = _userInput.Remove(_userInput.Length - 1);
                     UpdateInputField();
                 }
