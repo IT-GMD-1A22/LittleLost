@@ -1094,8 +1094,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1855004464}
   - {fileID: 1538088674}
+  - {fileID: 1607159585}
   - {fileID: 4088191595724735302}
   - {fileID: 5406367004964096425}
   - {fileID: 780397886}
@@ -4777,6 +4777,7 @@ GameObject:
   - component: {fileID: 380825091}
   - component: {fileID: 380825093}
   - component: {fileID: 380825092}
+  - component: {fileID: 380825094}
   m_Layer: 0
   m_Name: LevelManagers
   m_TagString: Untagged
@@ -4848,6 +4849,18 @@ MonoBehaviour:
   _triggerEvent: 2
   colliderTag: Player
   waitForTriggerCompleteBetweenEachTrigger: 0
+--- !u!114 &380825094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380825090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38bc355ec6c27f8419d588cb42ebeb80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &382268925
 GameObject:
   m_ObjectHideFlags: 0
@@ -15884,6 +15897,7 @@ GameObject:
   - component: {fileID: 1126546258}
   - component: {fileID: 1126546257}
   - component: {fileID: 1126546256}
+  - component: {fileID: 1126546262}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -16124,6 +16138,34 @@ MonoBehaviour:
   _triggerEvent: 3
   colliderTag: Player
   waitForTriggerCompleteBetweenEachTrigger: 0
+--- !u!114 &1126546262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126546251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab81cb38c7b4b6bbc3c538503dbb866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 20
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 380825094}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: ChangeToNextScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1137999662
 GameObject:
   m_ObjectHideFlags: 0
@@ -22288,7 +22330,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 88551427}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1541470579
 GameObject:
@@ -23279,6 +23321,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 102aff44e79f8e44e8058fd98452a8a4, type: 3}
+--- !u!4 &1607159585 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7524416148699624974, guid: 102aff44e79f8e44e8058fd98452a8a4, type: 3}
+  m_PrefabInstance: {fileID: 1607159584}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1611766184
 GameObject:
   m_ObjectHideFlags: 0
@@ -27477,11 +27524,6 @@ Transform:
   m_Father: {fileID: 940626663}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1855004464 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1597050346999620752, guid: 102aff44e79f8e44e8058fd98452a8a4, type: 3}
-  m_PrefabInstance: {fileID: 1607159584}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1855059575
 GameObject:
   m_ObjectHideFlags: 0
