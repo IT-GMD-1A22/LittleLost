@@ -15,6 +15,7 @@ https://youtu.be/kVXt9abuzgE
 ### WebGL
 To try the game in web gl, click the github pages below.
 https://it-gmd-1a22.github.io/LittleLostBuilds/
+Note: Some shaders might show incorrectly, or the game might have performance issue due to large texture amount. Windows build recommended.
 
 ### Windows Build (recommended)
 To play a windows build. Download the binaries from below. This is recommeneded performance wise.
