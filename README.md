@@ -6,7 +6,7 @@ to run the project, make sure the following modules is installed, as they are no
 
 1. Cinemachine
 2. URP
-
+3. Input System
 
 ### Youtube
 To see a teaser of gameplay, click the youtube link below.
