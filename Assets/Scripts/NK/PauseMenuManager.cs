@@ -36,7 +36,6 @@ public class PauseMenuManager : MonoBehaviour
     private void Start()
     {
         _pauseAction.Pause.PauseGame.performed += _ => DeterminePause();
-        _playerInputActionAsset = GetComponent<PlayerInputActionAsset>();
     }
 
     private void DeterminePause()
@@ -60,7 +59,7 @@ public class PauseMenuManager : MonoBehaviour
         AudioListener.pause = true;
         isPaused = true;
         pauseMenu.SetActive(true);
-        _playerInputActionAsset.cursorLocked = false;
+        SetCursor(false);
     }
 
     public void DeactivatePauseMenu()
@@ -68,12 +67,18 @@ public class PauseMenuManager : MonoBehaviour
         AudioListener.pause = false;
         isPaused = false;
         pauseMenu.SetActive(false);
-        _playerInputActionAsset.cursorLocked = true;
+        SetCursor(true);
     }
 
     public void LoadMainMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
         DeactivatePauseMenu();
+    }
+
+    private void SetCursor(bool locked)
+    {
+        _playerInputActionAsset = (PlayerInputActionAsset) FindObjectOfType(typeof(PlayerInputActionAsset));
+        _playerInputActionAsset.cursorLocked = locked;
     }
 }
