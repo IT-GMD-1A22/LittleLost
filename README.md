@@ -14,4 +14,4 @@ https://youtu.be/kVXt9abuzgE
 
 
 ### Windows Build (recommended)
-Windows build has been uploaded with report
+Windows build has been uploaded with report on wiseflow.
